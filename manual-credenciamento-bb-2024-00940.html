@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual Operacional, Credenciamento BB 2024/00940 | Do Zero ao Credenciamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Identidade visual Do Zero ao Credenciamento */
+  --bg:#FAF8F5;
+  --panel:#FFFFFF;
+  --ink:#262626;
+  --ink-soft:#666666;        /* cinza médio Cherpinski */
+  --accent:#C8202C;          /* vermelho Cherpinski (logo) */
+  --accent-deep:#9E1822;
+  --secondary:#2B2B2B;       /* grafite sóbrio (tabelas/títulos) */
+  --orange:#F5A623;          /* laranja "ENGENHARIA", usar só em detalhe */
+  --line:#EAE3DC;
+  --ok:#2E7D5B;
+  --warn:#B5740F;            /* âmbar legível p/ avisos */
+  --danger:#C8202C;
+  --chip:#F6EDE9;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Figtree',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.55}
+.app{display:grid;grid-template-columns:340px 1fr;height:100vh;overflow:hidden}
+
+/* SIDEBAR */
+.sidebar{background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;height:100vh;overflow-y:auto}
+.brand{display:flex;gap:12px;align-items:center;padding:22px 22px 16px}
+.logo{width:42px;height:42px;border-radius:9px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-weight:700;font-size:22px;flex:0 0 auto;box-shadow:0 0 0 2px var(--orange) inset}
+.brand h1{font-family:var(--serif);font-size:17px;line-height:1.2;font-weight:700}
+.brand h1 em{color:var(--accent);font-style:italic}
+.brand .sub{font-size:11.5px;color:var(--ink-soft);margin-top:3px}
+.progress-wrap{padding:8px 22px 16px;border-bottom:1px solid var(--line)}
+.progress-top{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:7px}
+.progress-bar{height:4px;background:var(--chip);border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;width:8%;background:var(--accent);transition:width .3s ease}
+.roteiro-label{font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:2.5px;font-weight:600;padding:16px 22px 8px}
+.nav-list{list-style:none;padding:0 12px 16px}
+.nav-item{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:11px 12px;border-radius:9px;cursor:pointer;border-left:3px solid transparent;transition:background .15s}
+.nav-item:hover{background:var(--chip)}
+.nav-item.active{background:var(--chip);border-left-color:var(--accent)}
+.nav-num{font-family:var(--serif);font-weight:700;color:var(--accent);font-size:15px}
+.nav-title{font-size:13px;font-weight:500;line-height:1.25}
+.nav-time{font-size:11px;color:var(--ink-soft)}
+.side-foot{margin-top:auto;padding:16px 22px;border-top:1px solid var(--line);font-size:11px;color:var(--ink-soft)}
+
+/* CONTENT */
+.content{height:100vh;overflow-y:auto;scroll-behavior:smooth}
+.slide{display:none;min-height:100vh;flex-direction:column;padding:clamp(32px,4.5vw,72px) clamp(28px,5vw,90px)}
+.slide.active{display:flex}
+.seclabel{font-size:clamp(12px,1.1vw,14px);text-transform:uppercase;letter-spacing:2.5px;font-weight:600;color:var(--accent);margin-bottom:14px}
+.slide h2{font-family:var(--serif);font-weight:800;font-size:clamp(34px,4.6vw,60px);line-height:1.05;margin-bottom:8px}
+.slide h2 em{font-style:italic;color:var(--accent)}
+.lead{font-size:clamp(16px,1.4vw,20px);color:var(--ink-soft);max-width:60ch;margin-bottom:26px}
+.slide h3{font-family:var(--serif);font-weight:700;font-size:clamp(20px,2vw,27px);margin:30px 0 12px;color:var(--secondary)}
+.slide h4{font-size:16px;font-weight:700;margin:20px 0 8px;color:var(--ink)}
+.slide p{margin-bottom:12px;max-width:74ch}
+.slide ul,.slide ol{margin:6px 0 14px 22px;max-width:74ch}
+.slide li{margin-bottom:7px}
+.cite{font-size:12.5px;color:var(--accent-deep);font-weight:600;background:var(--chip);padding:1px 7px;border-radius:5px;white-space:nowrap}
+.anchor{font-family:var(--serif);font-weight:700;font-size:clamp(22px,2.6vw,34px);line-height:1.2;color:var(--secondary);border-left:5px solid var(--orange);padding:6px 0 6px 20px;margin:8px 0 26px;max-width:62ch}
+.anchor em{font-style:italic;color:var(--accent)}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:10px 0 18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card .k{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent-deep);font-weight:600;margin-bottom:6px}
+.card .v{font-size:15px}
+.card.big .v{font-family:var(--serif);font-size:26px;font-weight:700}
+
+/* tables */
+.tbl{width:100%;border-collapse:collapse;margin:10px 0 20px;font-size:13.5px;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.tbl th,.tbl td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{background:var(--secondary);color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:nth-child(even) td{background:#FCFBF8}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.pill.y{background:#E4F1EA;color:var(--ok)}
+.pill.n{background:#F7E3E2;color:var(--danger)}
+.pill.c{background:#F6EBD6;color:var(--accent-deep)}
+
+/* callouts */
+.box{border-radius:11px;padding:16px 18px;margin:14px 0;border:1px solid var(--line);background:var(--panel)}
+.box.tip{border-left:4px solid var(--ok)}
+.box.risk{border-left:4px solid var(--danger)}
+.box.warn{border-left:4px solid var(--warn)}
+.box.interp{border-left:4px solid var(--secondary);background:#F4F6F7}
+.box .bt{font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;gap:7px;align-items:center}
+.box.tip .bt{color:var(--ok)} .box.risk .bt{color:var(--danger)} .box.warn .bt{color:var(--warn)} .box.interp .bt{color:var(--secondary)}
+.box p:last-child{margin-bottom:0}
+
+/* qa */
+.qa-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:6px 0 18px}
+.qa-search{flex:1;min-width:200px;padding:10px 14px;border:1px solid var(--line);border-radius:9px;font-family:var(--sans);font-size:14px}
+.qa-count{font-size:13px;color:var(--ink-soft)}
+.qa-group{font-family:var(--serif);font-weight:700;font-size:20px;color:var(--secondary);margin:26px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+.qa{border:1px solid var(--line);border-radius:10px;margin-bottom:9px;background:var(--panel);overflow:hidden}
+.qa summary{cursor:pointer;padding:13px 16px;font-weight:600;font-size:14.5px;list-style:none;display:flex;gap:10px;align-items:flex-start}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .qn{color:var(--accent);font-family:var(--serif);font-weight:700;flex:0 0 auto}
+.qa[open] summary{background:var(--chip)}
+.qa .ans{padding:4px 16px 15px 16px;font-size:14px;color:var(--ink)}
+.qa .ans .cite{margin-top:6px;display:inline-block}
+
+.nav-foot{display:flex;justify-content:space-between;gap:14px;margin-top:38px;padding-top:18px;border-top:1px solid var(--line)}
+.btn{font-family:var(--sans);font-size:14px;font-weight:600;padding:11px 20px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;transition:.15s}
+.btn:hover{background:var(--chip)}
+.btn.primary{background:var(--secondary);color:#fff;border-color:var(--secondary)}
+.btn.primary:hover{background:#24383F}
+.btn:disabled{opacity:.35;cursor:default}
+.small{font-size:12.5px;color:var(--ink-soft)}
+mark{background:#FCEFC7;padding:0 2px}
+@media(max-width:880px){
+  .app{grid-template-columns:1fr;height:auto}
+  .sidebar{height:auto;position:sticky;top:0;z-index:5;max-height:42vh}
+  .content{height:auto}
+  .slide{min-height:auto}
+}
+
+@media print{
+  @page{margin:13mm}
+  html,body{background:#fff !important}
+  .app{display:block !important;height:auto !important;overflow:visible !important}
+  .sidebar{display:none !important}
+  .content{height:auto !important;overflow:visible !important}
+  .slide{display:flex !important;min-height:auto !important;page-break-after:always;padding:0 0 16px !important}
+  .slide:last-child{page-break-after:auto}
+  .nav-foot,.btn,.qa-tools{display:none !important}
+  details.qa{break-inside:avoid;border:1px solid #ddd}
+  details.qa .ans{display:block !important}
+  .box,.tbl,.steps li,.card{break-inside:avoid}
+  a{color:inherit !important;text-decoration:none}
+}
+</style>
+<style id="cher-ovr">
+:root{--ok:#8A8A8A;--warn:#8A8A8A;--orange:#8A8A8A}
+.cite{border-radius:0 !important;background:#F2EEE8 !important;color:#9E1822 !important}
+.box{background:transparent !important;border:0 !important;border-left:3px solid #CFC8BD !important;border-radius:0 !important;padding:3px 0 3px 18px !important;margin:18px 0 !important}
+.box .bt{color:#5A544E !important}
+.box.risk{border-left-color:#C8202C !important}.box.risk .bt{color:#9E1822 !important}
+.box.tip,.box.warn,.box.interp{border-left-color:#CFC8BD !important;background:transparent !important}
+.box.tip .bt,.box.warn .bt,.box.interp .bt{color:#5A544E !important}
+.box.edital{border-left-color:#2B2B2B !important;background:transparent !important}.box.edital .bt{color:#2B2B2B !important}
+.anchor{border-left:3px solid #C8202C !important}
+.tbl{border:0 !important;border-top:2px solid #2B2B2B !important;border-radius:0 !important}
+.tbl th{background:#2B2B2B !important}
+.tbl tr:nth-child(even) td{background:#F2EEE8 !important}
+.logo{box-shadow:none !important;border-radius:9px !important}
+.card{border-radius:0 !important;border-top:3px solid #C8202C !important}
+.card.manual{border-top-color:#2B2B2B !important}
+.btn{border-radius:0 !important}.btn.primary{background:#C8202C !important;border-color:#C8202C !important}
+.nav-item,.qa{border-radius:0 !important}
+.progress-fill,.qa summary .qn,.nav-num{color:#C8202C}
+.progress-fill{background:#C8202C !important}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">C</div>
+      <div>
+        <h1>Do Zero ao <em>Credenciamento</em></h1>
+        <div class="sub">Manual Operacional · Edital BB 2024/00940(7421)</div>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-top"><span>Progresso do manual</span><span id="progressPct">8%</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <div class="roteiro-label">Roteiro do Manual</div>
+    <ul class="nav-list" id="navList">
+      <li class="nav-item active" data-slide="0"><span class="nav-num">01</span><span class="nav-title">Resumo Executivo</span><span class="nav-time">8min</span></li>
+      <li class="nav-item" data-slide="1"><span class="nav-num">02</span><span class="nav-title">Requisitos para Credenciamento</span><span class="nav-time">12min</span></li>
+      <li class="nav-item" data-slide="2"><span class="nav-num">03</span><span class="nav-title">Estruturação da Empresa</span><span class="nav-time">12min</span></li>
+      <li class="nav-item" data-slide="3"><span class="nav-num">04</span><span class="nav-title">Execução dos Serviços</span><span class="nav-time">10min</span></li>
+      <li class="nav-item" data-slide="4"><span class="nav-num">05</span><span class="nav-title">Expansão Operacional · 4 Cenários</span><span class="nav-time">12min</span></li>
+      <li class="nav-item" data-slide="5"><span class="nav-num">06</span><span class="nav-title">Gestão de Ausências</span><span class="nav-time">10min</span></li>
+      <li class="nav-item" data-slide="6"><span class="nav-num">07</span><span class="nav-title">Distribuição de Serviços</span><span class="nav-time">12min</span></li>
+      <li class="nav-item" data-slide="7"><span class="nav-num">08</span><span class="nav-title">Penalidades e Riscos · ANS</span><span class="nav-time">12min</span></li>
+      <li class="nav-item" data-slide="8"><span class="nav-num">09</span><span class="nav-title">100+ Perguntas e Respostas</span><span class="nav-time">25min</span></li>
+      <li class="nav-item" data-slide="9"><span class="nav-num">10</span><span class="nav-title">Oportunidades Escondidas</span><span class="nav-time">10min</span></li>
+      <li class="nav-item" data-slide="10"><span class="nav-num">11</span><span class="nav-title">Checklists Operacionais</span><span class="nav-time">8min</span></li>
+      <li class="nav-item" data-slide="11"><span class="nav-num">12</span><span class="nav-title">Manual da Mentoria · Fundamentos</span><span class="nav-time">8min</span></li>
+    </ul>
+    <div class="side-foot" id="sideFoot">Bloco 1 de 12 · Base: Edital 2024/00940(7421), BB / CESUP-SP</div>
+  </aside>
+
+  <main class="content" id="content">
+
+  <!-- ===================== BLOCO 01 ===================== -->
+  <section class="slide active">
+    <div class="seclabel">Bloco 01 · Resumo Executivo</div>
+    <h2>O que é, de fato, este <em>credenciamento</em></h2>
+    <p class="lead">Antes de decorar regra, entenda o jogo: o Banco do Brasil não contrata um vencedor, ele credencia um cadastro de empresas e distribui serviço por fila. Quem entende a fila, fatura.</p>
+
+    <div class="anchor">Credenciamento <em>não é licitação</em>: não há vencedor único. Todo mundo que cumprir os requisitos entra, e depois disputa o serviço pela fila de distribuição.</div>
+
+    <h3>Objetivo do credenciamento</h3>
+    <p>Credenciar <strong>pessoas jurídicas, inclusive empresário individual</strong>, registradas no CREA ou CAU, com objeto social de engenharia e/ou arquitetura, para prestar serviços técnicos de <strong>avaliação de imóveis, estudo de viabilidade, vistoria, acompanhamento de obra, orçamento, diagnóstico de danos e assistência técnica judicial</strong>, voltados ao <strong>crédito imobiliário</strong> ou aquisição por consórcio, sempre que o Banco manifestar interesse. <span class="cite">item 2.1, p.4 · Anexo I 1.1, p.24</span></p>
+
+    <h3>Quem pode participar</h3>
+    <ul>
+      <li>PJ ou empresário individual com registro/quitação no CREA ou CAU e objeto social compatível. <span class="cite">item 2.1, p.4</span></li>
+      <li>Empresas em <strong>recuperação judicial</strong>, desde que com certidão judicial atestando aptidão econômico-financeira. <span class="cite">item 3.4, p.6</span></li>
+    </ul>
+
+    <h3>Quem NÃO pode participar</h3>
+    <ul>
+      <li>Quem elaborou o anteprojeto/Projeto Básico do credenciamento, ou tenha vínculo com o autor. <span class="cite">item 3.2 a–d, p.4</span></li>
+      <li>Empresas em <strong>consórcio</strong> (vedado), em falência, dissolução ou liquidação. <span class="cite">item 3.2 e/h, p.4-5</span></li>
+      <li>Quem cumpre suspensão do BB, é inidôneo perante a União ou consta em listas da ONU. <span class="cite">item 3.2 f/g, p.4-5</span></li>
+      <li>Empresas com sócio/administrador/procurador que seja funcionário, dirigente, RT do edital, ou parente até 3º grau de dirigente/empregado do BB ligado à contratação, é o bloqueio de <strong>nepotismo</strong>. <span class="cite">item 3.2 i–s e 3.5, p.5-6</span></li>
+    </ul>
+
+    <div class="cards">
+      <div class="card big"><div class="k">Vigência do edital</div><div class="v">60 meses</div><div class="small">a partir da publicação no D.O.U. <span class="cite">item 1.6, p.3</span></div></div>
+      <div class="card big"><div class="k">Janela de requerimento</div><div class="v">até 18/12/2025</div><div class="small">18 meses do início da vigência <span class="cite">item 1.6.1 / 5.1.1, p.3 e 8</span></div></div>
+      <div class="card big"><div class="k">Vigência do contrato</div><div class="v">07/10/2024 → 07/10/2029</div><div class="small">Cláusula Segunda <span class="cite">p.44</span></div></div>
+    </div>
+
+    <h3>Tipos de serviço contemplados (21 atividades + RCV)</h3>
+    <p>Organizados em <strong>6 pacotes indivisíveis</strong>: avaliação de imóvel (AVA/AVR), assistência técnica judicial (AST), estudo de viabilidade e acompanhamento (EVT/RAE/AVD), produção PMCMV-FAR (AVA-401/EVT/RAE), danos físicos e orçamento (VST/ORC) e a atividade complementar RCV-501 (relatório com vistoria). <span class="cite">item 6.4, p.13 · Anexo I 2, p.24-31</span></p>
+
+    <h3>Estrutura geral do edital</h3>
+    <p>10 seções (disposições, objeto, participação, impugnação, requerimento, habilitação, fase recursal, contrato, sanções, disposições finais) + 13 anexos. O coração operacional está no <strong>Anexo XI, Minuta de Contrato (p.43-90)</strong>, dividido em documentos: DOC 1 região, DOC 2 obrigações, DOC 3 remuneração/prazos, DOC 4 distribuição, DOC 5 ANS. <span class="cite">Índice, p.2</span></p>
+
+    <div class="box interp"><div class="bt">Leitura estratégica (interpretação)</div><p>A janela de requerimento deste edital específico <strong>já fechou em 18/12/2025</strong>. O valor deste manual para a mentoria não é "entrar neste edital agora", é dominar o <strong>método de leitura</strong> dos editais de credenciamento BB, que repetem essa mesma arquitetura a cada ciclo. Use este como mapa do próximo.</p></div>
+
+    <div class="nav-foot"><button class="btn" data-action="prev" disabled>← Anterior</button><button class="btn primary" data-action="next">Próximo → Requisitos</button></div>
+  </section>
+
+  <!-- ===================== BLOCO 02 ===================== -->
+  <section class="slide">
+    <div class="seclabel">Bloco 02 · Requisitos para Credenciamento</div>
+    <h2>O que o Banco <em>exige</em> para te habilitar</h2>
+    <p class="lead">A habilitação tem três frentes, jurídica, econômico-financeira e técnica, e pode ser feita via SICAF ou direto no Banco. Aqui está o que é obrigatório, o que é facultativo e o que te inabilita.</p>
+
+    <h3>As 3 frentes de habilitação <span class="cite">item 6.1, p.9</span></h3>
+    <p>A critério do interessado, a habilitação pode ser feita pelo <strong>SICAF</strong> (cadastro do governo federal, níveis I, II, III, V e VI) ou <strong>junto ao Banco</strong>. <span class="cite">item 6.2 e 6.6, p.9 e 15</span></p>
+
+    <h3>1) Habilitação Jurídica <span class="cite">item 6.3.1–6.3.7, p.10</span></h3>
+    <ul>
+      <li><strong>Obrigatório:</strong> ato constitutivo/contrato social em vigor registrado, com administradores; inscrição no CNPJ; inscrição no cadastro de contribuintes (se houver). O objeto social precisa contemplar atividade de engenharia/arquitetura.</li>
+      <li><strong>Inabilita:</strong> objeto social incompatível, ou documentação não regularizada no prazo de 3 dias úteis após convocação. <span class="cite">item 6.3.7, p.10</span></li>
+    </ul>
+
+    <h3>2) Qualificação Econômico-Financeira <span class="cite">item 6.3.8, p.10</span></h3>
+    <ul>
+      <li><strong>Obrigatório:</strong> certidão negativa de falência dentro da validade. Onde houver mais de um cartório distribuidor, uma certidão por cartório.</li>
+      <li><strong>Caso especial:</strong> em recuperação judicial, certidão da instância judicial atestando aptidão. <span class="cite">item 6.3.8.2, p.10</span></li>
+    </ul>
+
+    <h3>3) Qualificação Técnica <span class="cite">item 6.3.9–6.3.10, p.10-12</span></h3>
+    <p>As avaliações cabem <strong>exclusivamente a profissionais habilitados no CONFEA/CREA e CAU</strong>. <span class="cite">item 6.3.9, p.10-11</span> Documentos obrigatórios:</p>
+    <ul>
+      <li>Requerimento de Credenciamento (Anexo III) em planilha (.xls) + .pdf assinado. <span class="cite">6.3.10.1, p.11</span></li>
+      <li>Certidão de Registro e Quitação da <strong>PJ</strong> no CREA/CAU, com objeto de engenharia/arquitetura. <span class="cite">6.3.10.2, p.11</span></li>
+      <li>Registro da PJ no conselho onde constem os responsáveis técnicos. <span class="cite">6.3.10.3, p.11</span></li>
+      <li>Certidão comprovando <strong>vínculo profissional regular</strong> entre PJ e cada RT. <span class="cite">6.3.10.4, p.11</span></li>
+      <li>Certidão de Registro e Quitação dos <strong>profissionais (PF)</strong> do quadro técnico. <span class="cite">6.3.10.5, p.11</span></li>
+      <li>Identidade e CPF de RTs, responsáveis legais, sócios e administradores. <span class="cite">6.3.10.6, p.11</span></li>
+      <li>Comprovação de <strong>experiência por profissional</strong> conforme pré-requisitos dos pacotes (itens 6.4/6.5). <span class="cite">6.3.10.7, p.11</span></li>
+    </ul>
+
+    <div class="box tip"><div class="bt">Atalho real (quem já era credenciado)</div><p>Profissionais credenciados no edital anterior <strong>2019/01725(7421)</strong> podem ser dispensados de parte ou de todos os pré-requisitos técnicos, entregando o <strong>Anexo IV, Termo de Declaração de Qualificação Técnica</strong>. Vale enquanto o vínculo for mantido; se o profissional trocar de empresa, exige-se a documentação completa de novo. <span class="cite">item 6.3.10.8 e subitens, p.11-12</span></p></div>
+
+    <h3>Requisitos por pacote, habilitação técnica <span class="cite">item 6.4–6.5, p.13-15</span></h3>
+    <p>Cada pacote tem opções alternativas de pré-requisito. Caminhos típicos:</p>
+    <table class="tbl">
+      <tr><th>Pacote</th><th>Atividades</th><th>Pré-requisito (uma das opções)</th></tr>
+      <tr><td><strong>1</strong></td><td>AVA-101, RCV-501</td><td>Credenciado no 2019; OU pré-req do pacote 2/3/4; OU certificação IBAPE Nível A; OU formação (Eng. Civil/Produção Civil/Arquitetura) + curso de avaliação ≥20h com inferência NBR 14653 + 1 laudo NBR 14653-2 grau de fundamentação I + ART/RRT. <span class="cite">item 6.5, p.13</span></td></tr>
+      <tr><td><strong>2</strong></td><td>AVA-101/103/104, AVR-102, RAU-105, RCV-501</td><td>Credenciado no 2019; OU pré-req do pacote 3/4; OU pacote 1 + CAT do CREA/CAU em projeto/obra/gerenciamento/análise/orçamento de edificação. <span class="cite">p.14</span></td></tr>
+      <tr><td><strong>3</strong></td><td>EVT-301/302/303, RAE-304, AVD-305, AVA-401, EVT-402/403, RAE-404, RCV-501</td><td>Credenciado no 2019; OU IBAPE Nível AA + CAT de edificação ≥750 m² ou empreendimento ≥20 unidades; OU formação + curso ≥20h + 3 laudos NBR 14653-2 grau de fundamentação II + CAT. <span class="cite">p.14-15</span></td></tr>
+      <tr><td><strong>4</strong></td><td>AST-201/202/203, RCV-501</td><td>(Mesma lógica do bloco de pré-requisitos, formação + comprovação técnica). <span class="cite">p.13-15</span></td></tr>
+      <tr><td><strong>5</strong></td><td>VST-405/406/407, RCV-501</td><td>Credenciado no 2019 (VST-01/02/03); OU formação + CAT em diagnóstico de dano físico de edificação. <span class="cite">p.15</span></td></tr>
+      <tr><td><strong>6</strong></td><td>ORC-408, RCV-501</td><td>Credenciado no 2019 (ORC-01); OU formação + CAT em orçamento de edificação, empreendimento ≥30 unidades. <span class="cite">p.15</span></td></tr>
+    </table>
+
+    <h3>Documentos complementares (sempre exigidos) <span class="cite">item 6.7, p.16</span></h3>
+    <ul>
+      <li>Regularidade junto à Seguridade Social.</li>
+      <li>Declarações: conhecimento das condições; não possuir as pessoas do item 3.2; não emprega menor (Anexo V); inexistência de fato superveniente (Anexo VI); inexistência de funcionário CESUP/Gerência Patrimonial (Anexo VII); existência/inexistência de vínculos com funcionários do Centro (Anexo VIII). <span class="cite">item 6.7.2–6.7.7, p.16</span></li>
+    </ul>
+
+    <div class="box warn"><div class="bt">Prazos e validade que derrubam candidato</div><p>Documentos sem prazo expresso valem <strong>90 dias</strong> da emissão (exceto atestados técnicos, que não têm validade). <span class="cite">item 6.11.1/6.11.2, p.18</span> Documentação incompleta → comunicação por e-mail e <strong>3 dias úteis</strong> para regularizar (6.3.7/6.6.2.2). Deferido parcial ou indeferido → <strong>5 dias úteis</strong> para complementar (6.17, p.18). Indeferido em definitivo → esperar <strong>90 dias corridos</strong> para novo requerimento (6.18, p.18). O prazo de análise do Banco é de até <strong>100 dias úteis</strong> (5.11, p.8).</p></div>
+
+    <div class="nav-foot"><button class="btn" data-action="prev">← Resumo</button><button class="btn primary" data-action="next">Próximo → Estruturação</button></div>
+  </section>
+
+  <!-- ===================== BLOCO 03 ===================== -->
+  <section class="slide">
+    <div class="seclabel">Bloco 03 · Estruturação da Empresa</div>
+    <h2>Quantos engenheiros, quais <em>vínculos</em>, como crescer o quadro</h2>
+    <p class="lead">Aqui a empresa deixa de ser "um engenheiro com CNPJ" e vira operação. O edital é generoso com múltiplos técnicos, desde que o vínculo seja comprovável no conselho.</p>
+
+    <div class="anchor">O credenciamento é da <em>empresa</em>; a habilitação técnica é por <em>profissional + atividade + microrregião</em>. A fila, porém, é da empresa: mais técnicos abrem novas microrregiões e atividades, não posições extras na mesma fila.</div>
+
+    <h3>Posso ter mais de um responsável técnico?</h3>
+    <p>Sim, e o edital incentiva. A empresa pode enviar <strong>tantos formulários de Requerimento (Anexo III) quantos forem necessários</strong> para registrar todos os técnicos e suas opções de atuação. <span class="cite">DOC 1 item 2, p.64 · 6.3.10.1 b, p.11</span></p>
+
+    <h3>Posso incluir engenheiros/arquitetos depois do credenciamento?</h3>
+    <p>Sim. A inclusão de novos profissionais exige a qualificação técnica de cada um (itens 6.12/6.13 / pré-requisitos dos pacotes). <span class="cite">item 6.3.10.8.3, p.12</span> Toda alteração no quadro técnico deve ser comunicada ao Banco em <strong>10 dias</strong>. <span class="cite">DOC 2 item 21, p.67</span> Importante: o prazo mínimo entre pedidos de alteração de serviços e polos é de <strong>3 meses após a assinatura</strong> do contrato/aditivo, atendidos em até 100 dias úteis. <span class="cite">item 5.13, p.8</span></p>
+    <p>Arquitetos são elegíveis: o objeto admite profissionais registrados no <strong>CAU</strong>, e os pré-requisitos aceitam formação em Arquitetura. <span class="cite">item 2.1, p.4 · 6.5, p.13</span></p>
+
+    <h3>Como comprovar vínculo, e quais valem</h3>
+    <p>O vínculo é comprovado por <strong>certidão do CREA/CAU atestando vínculo profissional regular</strong> entre a PJ e o RT. <span class="cite">item 6.3.10.4, p.11</span> O edital não restringe a natureza do vínculo (empregatício, societário ou de RT registrado), desde que o conselho o reconheça como regular.</p>
+
+    <h3>Tabela, situações de estruturação</h3>
+    <table class="tbl">
+      <tr><th>Situação</th><th>Permitido?</th><th>Restrições</th><th>Procedimento</th></tr>
+      <tr><td>Vários RTs na mesma empresa</td><td><span class="pill y">Sim</span></td><td>Cada um habilitado por atividade/microrregião</td><td>Um Anexo III por profissional/opção <span class="cite">DOC 1 it.2, p.64</span></td></tr>
+      <tr><td>Incluir engenheiro depois</td><td><span class="pill y">Sim</span></td><td>Qualificação técnica de cada novo; após 3 meses da assinatura</td><td>Pedido de alteração + docs (6.12/6.13) <span class="cite">6.3.10.8.3, p.12 · 5.13, p.8</span></td></tr>
+      <tr><td>Incluir arquiteto (CAU)</td><td><span class="pill y">Sim</span></td><td>Registro CAU + pré-req do pacote</td><td>Mesma via de inclusão técnica <span class="cite">2.1, p.4</span></td></tr>
+      <tr><td>Sócio como RT</td><td><span class="pill y">Sim</span></td><td>Não pode ser pessoa do item 3.2 (funcionário BB, parente etc.)</td><td>Vínculo regular no conselho <span class="cite">3.2, p.5-6</span></td></tr>
+      <tr><td>Empregado (CLT) como RT</td><td><span class="pill y">Sim</span></td><td>Vínculo regular comprovado no conselho</td><td>Certidão de vínculo CREA/CAU <span class="cite">6.3.10.4, p.11</span></td></tr>
+      <tr><td>Profissional PJ / prestador autônomo</td><td><span class="pill c">Cuidado</span></td><td>Vedada subcontratação total/parcial do objeto; o serviço é prestado diretamente pela contratada e assinado por profissional vinculado</td><td>Só como vínculo regular no conselho, não como subcontratação <span class="cite">3.6, p.6 · DOC 2 it.8, p.66 · Cl. 1ª §2, p.43</span></td></tr>
+      <tr><td>Subcontratar parte do serviço</td><td><span class="pill n">Não</span></td><td>Exceção só p/ serviços complementares multidisciplinares; a contratada responde pela integralidade</td><td>,  <span class="cite">3.6/3.7, p.6</span></td></tr>
+      <tr><td>Usar estagiário p/ assinar/vistoriar</td><td><span class="pill n">Não</span></td><td>Trabalho deve ser assinado por profissional habilitado e que realizou o serviço; vedadas procurações</td><td>,  <span class="cite">DOC 2 it.8, p.66</span></td></tr>
+    </table>
+
+    <div class="box risk"><div class="bt">Erro que custa o contrato</div><p>Tratar terceiro como "subcontratado" para dar conta do volume. A cláusula é dura: serviços prestados <strong>diretamente</strong> pela contratada, <strong>vedada cessão, transferência ou subcontratação total ou parcial</strong>, e o trabalho assinado por profissional <strong>vinculado, habilitado e que efetivamente realizou o serviço, sem procurações</strong>. <span class="cite">Cl. 1ª §2, p.43 · 3.6, p.6 · DOC 2 it.8, p.66</span></p></div>
+
+    <div class="box interp"><div class="bt">Interpretação</div><p>O edital não fixa número máximo de RTs nem exige que sejam sócios. Logo, a leitura técnica é que você escala incluindo profissionais com <strong>vínculo regular no conselho</strong> (CLT, sócio ou RT registrado). "Profissional PJ" só funciona se o conselho reconhecer o vínculo, não como nota fiscal de subcontratação. Isso não está dito com essas palavras: é dedução das regras 3.6, 1ª §2 e DOC 2 item 8.</p></div>
+
+    <div class="nav-foot"><button class="btn" data-action="prev">← Requisitos</button><button class="btn primary" data-action="next">Próximo → Execução</button></div>
+  </section>
+
+  <!-- ===================== BLOCO 04 ===================== -->
+  <section class="slide">
+    <div class="seclabel">Bloco 04 · Execução dos Serviços</div>
+    <h2>Quem pode <em>vistoriar</em> e quem pode <em>assinar</em></h2>
+    <p class="lead">A regra de ouro: só executa e assina quem está habilitado naquela atividade E naquela microrregião. A habilitação é granular, por profissional, por atividade, por pacote.</p>
+
+    <h3>Quem realiza a vistoria e assina o laudo</h3>
+    <ul>
+      <li>O trabalho deve ser assinado, obrigatoriamente, por <strong>profissional vinculado à empresa, habilitado naquela atividade e microrregião, e que efetivamente realizou o serviço</strong>. <strong>Não são permitidas procurações.</strong> <span class="cite">DOC 2 item 8, p.66</span></li>
+      <li>Também deve constar a assinatura do <strong>representante legal</strong> habilitado/autorizado. <span class="cite">DOC 2 item 9, p.66</span></li>
+      <li>Profissional do quadro <strong>não habilitado</strong> naquela atividade/microrregião está <strong>impedido de executar e assinar</strong>. <span class="cite">DOC 4 item 5.4, p.77</span></li>
+      <li>O Banco pode exigir comprovação da <strong>presença do profissional habilitado na vistoria</strong> por foto, geolocalização ou outro meio. <span class="cite">DOC 4 item 5.5, p.77</span></li>
+    </ul>
+
+    <h3>Quem atende cada microrregião</h3>
+    <p>A área de abrangência é <strong>nacional</strong>, com preferência nas microrregiões escolhidas. A contratada pode receber OS em <strong>qualquer microrregião do país</strong>, mesmo fora das preferenciais. As microrregiões são <strong>indivisíveis</strong> e classificadas em tipos <strong>A, B e C</strong>. <span class="cite">DOC 1 itens 3, 3.1, 3.2 e 1.1, p.64</span></p>
+
+    <h3>Como funciona a habilitação, três camadas</h3>
+    <div class="cards">
+      <div class="card"><div class="k">Por profissional</div><div class="v">Cada técnico comprova seus pré-requisitos. A habilitação acompanha o profissional, não a empresa. <span class="cite">6.3.10.7/6.3.10.8.2, p.11-12</span></div></div>
+      <div class="card"><div class="k">Por atividade</div><div class="v">A qualificação é por código de serviço (AVA-101, EVT-303 etc.). Habilitar para um não habilita para todos. <span class="cite">6.3.10.10, p.12</span></div></div>
+      <div class="card"><div class="k">Por pacote</div><div class="v">Os serviços são agrupados em 6 pacotes indivisíveis. Você se qualifica para o pacote, não para atividade solta dentro dele. <span class="cite">6.4, p.13</span></div></div>
+    </div>
+
+    <h3>E se um profissional não estiver habilitado para a atividade?</h3>
+    <div class="box risk"><div class="bt">Consequência direta</div><p>Ele fica <strong>impedido de executar e assinar</strong> trabalhos daquela atividade/microrregião. Se a empresa entregar mesmo assim, o trabalho é irregular, sujeito a devolução, pontuação negativa no ANS e, conforme a gravidade, sanção. <span class="cite">DOC 4 item 5.4, p.77 · DOC 5, p.79-83</span></p></div>
+
+    <div class="box warn"><div class="bt">Obrigação técnica que pega muita gente</div><p>A <strong>ART/RRT deve ser aberta ANTES</strong> da execução do serviço e entregue até o mês subsequente. Trabalho sem ART/RRT no prazo = <strong>inexecução</strong>: pontuação negativa e empresa fora da fila até regularizar. <span class="cite">DOC 2 itens 4 e 34, p.65 e 68 · DOC 4 item 5.1.1, p.76</span></p></div>
+
+    <div class="nav-foot"><button class="btn" data-action="prev">← Estruturação</button><button class="btn primary" data-action="next">Próximo → Expansão</button></div>
+  </section>
+
+  <!-- ===================== BLOCO 05 ===================== -->
+  <section class="slide">
+    <div class="seclabel">Bloco 05 · Expansão Operacional</div>
+    <h2>De autônomo a <em>operação nacional</em>, 4 cenários</h2>
+    <p class="lead">O edital tem alavancas claras de expansão: mais técnicos, mais microrregiões preferenciais e cobertura nacional por convite. O segredo é reduzir a dependência de um único profissional.</p>
+
+    <h3>As alavancas de crescimento no edital</h3>
+    <ul>
+      <li><strong>Microrregiões preferenciais por RT:</strong> cada responsável técnico pode indicar de <strong>1 a 6 microrregiões</strong>, respeitando: MR 1 = tipo A, B ou C; MR 2-4 = tipo B ou C; MR 5-6 = tipo C; todas em no máximo <strong>2 UFs</strong>. <span class="cite">DOC 1 item 4, p.64</span></li>
+      <li><strong>Cobertura nacional:</strong> pode receber OS em qualquer microrregião do país. <span class="cite">DOC 1 item 3.1, p.64</span></li>
+      <li><strong>Múltiplos técnicos:</strong> cada um pode declarar microrregiões e atividades que a empresa ainda não cobre. A fila é por empresa em cada microrregião, então o ganho é entrar em microrregiões e atividades novas, não dobrar posição na mesma praça. <span class="cite">DOC 1 item 2 · DOC 4 item 1.2.1, p.64 e 74</span></li>
+    </ul>
+
+    <table class="tbl">
+      <tr><th>Cenário</th><th>Configuração</th><th>Como escalar dentro do edital</th><th>Risco principal</th></tr>
+      <tr><td><strong>A, Autônomo</strong></td><td>1 RT, 1 CNPJ, poucas microrregiões</td><td>Concentrar nos pacotes de maior demanda (AVA-101/RCV-501); escolher MR tipo A na posição 1. Construir histórico de prazo/qualidade.</td><td>Dependência total de 1 pessoa: doença = afastamento obrigatório da microrregião. <span class="cite">DOC 2 it.24.1, p.68</span></td></tr>
+      <tr><td><strong>B, Empresa pequena</strong></td><td>2-3 RTs, mesma UF</td><td>Cada RT em microrregiões distintas (até 2 UFs cada) para cobrir mais território; habilitar em mais de um pacote.</td><td>Coordenar prazos e ANS de vários técnicos sem cair em pontuação negativa.</td></tr>
+      <tr><td><strong>C, Múltiplos engenheiros</strong></td><td>5+ RTs, 2+ UFs</td><td>Redundância: ≥2 profissionais habilitados por atividade/microrregião, assim nenhum afastamento individual obriga afastar a microrregião inteira.</td><td>Gestão de quadro: comunicar alterações em 10 dias; cada inclusão exige qualificação. <span class="cite">DOC 2 it.21, p.67</span></td></tr>
+      <tr><td><strong>D, Operação nacional</strong></td><td>Rede de RTs cobrindo várias UFs + estrutura administrativa</td><td>Aceitar convites em microrregiões não preferenciais (sem perder posição na fila preferencial); padronizar laudos para minimizar devoluções no ANS 2.</td><td>Manter habilitação/quitação de todos os RTs vigentes o tempo todo (Cl. 8ª, p.48) e o compliance societário (sem nepotismo, 3.2).</td></tr>
+    </table>
+
+    <h3>Como reduzir a dependência de um único profissional</h3>
+    <div class="box tip"><div class="bt">A jogada estrutural mais importante</div><p>Habilite <strong>pelo menos dois profissionais por atividade em cada microrregião preferencial</strong>. O edital obriga a empresa a se afastar de <strong>todas as atividades de uma microrregião quando tiver um único profissional habilitado e ele ficar impossibilitado</strong>. <span class="cite">DOC 2 item 24.1, p.68 · DOC 4 item 6.2, p.77</span> Com redundância, o afastamento de um técnico não para o faturamento daquela praça.</p></div>
+
+    <h3>Sucessão operacional</h3>
+    <p>Planeje a substituição de RT com antecedência: a troca exige nova documentação técnica completa do entrante (a dispensa do 2019 só vale enquanto mantido o vínculo original). <span class="cite">6.3.10.8.2, p.12</span> Comunicação de alteração de quadro técnico em 10 dias <span class="cite">DOC 2 it.21, p.67</span>; alteração social em 48h <span class="cite">Cl. 14ª, p.50</span>.</p>
+
+    <div class="box interp"><div class="bt">Interpretação</div><p>"Operação nacional" no sentido do edital é cobertura por convite + rede de RTs preferenciais espalhados, não uma filial física obrigatória. O edital não exige filial por UF; exige profissional habilitado para a atividade/microrregião do serviço. A escala vem de <strong>gente habilitada</strong>, não de CNPJs.</p></div>
+
+    <div class="nav-foot"><button class="btn" data-action="prev">← Execução</button><button class="btn primary" data-action="next">Próximo → Ausências</button></div>
+  </section>
+
+  <!-- ===================== BLOCO 06 ===================== -->
+  <section class="slide">
+    <div class="seclabel">Bloco 06 · Gestão de Ausências</div>
+    <h2>Férias, maternidade, doença, <em>imprevistos</em></h2>
+    <p class="lead">O edital não tem cláusula de "licença-maternidade" nem "férias" com esse nome. Tudo é tratado por um único mecanismo: o afastamento temporário da distribuição. Saber acioná-lo é o que protege a credenciada.</p>
+
+    <div class="anchor">Não existe penalidade por <em>se ausentar</em>, existe penalidade por <em>sumir sem avisar</em>. O afastamento temporário é seu escudo.</div>
+
+    <h3>O mecanismo único: afastamento temporário <span class="cite">DOC 2 item 24, p.67 · DOC 4 item 6, p.77</span></h3>
+    <ul>
+      <li><strong>Como solicitar:</strong> formalmente ao Banco, por plataforma digital ou e-mail indicado, informando <strong>um único período</strong> e o motivo.</li>
+      <li><strong>Antecedência mínima:</strong> 5 dias corridos. <strong>Período mínimo:</strong> 7 dias corridos.</li>
+      <li><strong>Responsabilidade:</strong> a empresa continua responsável pelo andamento, conclusão e entrega dos trabalhos <strong>já demandados</strong>.</li>
+    </ul>
+
+    <table class="tbl">
+      <tr><th>Situação</th><th>O que pode ser feito</th><th>Como solicitar</th><th>Risco / como evitar</th></tr>
+      <tr><td>Férias</td><td>Afastamento temporário (motivo expressamente previsto)</td><td>Pedido com 5 dias corridos de antecedência, mín. 7 dias <span class="cite">DOC 2 it.24, p.67</span></td><td>Sair sem pedir → recusas e pontuação negativa</td></tr>
+      <tr><td>Gravidez / licença-maternidade</td><td>Afastamento temporário por "afastamento de profissional / força maior" (não há cláusula específica)</td><td>Mesmo procedimento; informar o período</td><td>Interpretação, ver caixa abaixo</td></tr>
+      <tr><td>Doença / licença saúde</td><td>Afastamento temporário (citado expressamente no DOC 4 it.6: "férias, licença saúde, etc.")</td><td>Mesmo procedimento <span class="cite">DOC 4 it.1.2.4.4, p.75</span></td><td>Se for o único habilitado, afastamento da microrregião é obrigatório <span class="cite">it.24.1, p.68</span></td></tr>
+      <tr><td>Afastamento temporário genérico</td><td>"Outro motivo de força maior"</td><td>Justificar na solicitação</td><td>Período mínimo de 7 dias corridos</td></tr>
+      <tr><td>Falecimento do contratado</td><td>É hipótese de <strong>rescisão</strong> do contrato</td><td>, </td><td>Empresário individual sem sucessor → contrato encerra <span class="cite">Cl. 2ª §2 X, p.44</span></td></tr>
+      <tr><td>Desligamento de profissional</td><td>Comunicar alteração de quadro técnico</td><td>Comunicar em 10 dias <span class="cite">DOC 2 it.21, p.67</span></td><td>Se era o único habilitado da microrregião, afastar a microrregião</td></tr>
+      <tr><td>Mudança/substituição de RT</td><td>Incluir novo RT com qualificação técnica completa</td><td>Pedido de alteração + docs (6.12/6.13); 3 meses após assinatura <span class="cite">6.3.10.8.3, p.12 · 5.13, p.8</span></td><td>Banco pode reavaliar a capacitação a cada alteração societária <span class="cite">5.18, p.9</span></td></tr>
+    </table>
+
+    <div class="box warn"><div class="bt">Afastamento obrigatório</div><p>Quando a empresa tem <strong>um único profissional habilitado</strong> em determinada atividade/microrregião e ele fica impossibilitado, o pedido de afastamento daquela microrregião é <strong>obrigatório</strong>, não opcional. <span class="cite">DOC 2 item 24.1, p.68 · DOC 4 item 6.2, p.77</span></p></div>
+
+    <div class="box interp"><div class="bt">Interpretação, gravidez/maternidade</div><p>O edital <strong>não traz cláusula de licença-maternidade</strong>. O que existe é a proibição de discriminação por "estado gravídico" <span class="cite">DOC 2 it.29, p.68 · Cl. 9ª e, p.49</span> e o afastamento temporário genérico (it.24). Leitura técnica: a engenheira gestante <strong>continua credenciada</strong> e usa o afastamento temporário pelo período necessário. Isso é dedução das regras, não está escrito "maternidade" em lugar nenhum do edital.</p></div>
+
+    <div class="nav-foot"><button class="btn" data-action="prev">← Expansão</button><button class="btn primary" data-action="next">Próximo → Distribuição</button></div>
+  </section>
+
+  <!-- ===================== BLOCO 07 ===================== -->
+  <section class="slide">
+    <div class="seclabel">Bloco 07 · Distribuição de Serviços</div>
+    <h2>A <em>fila</em>: como o serviço chega até você</h2>
+    <p class="lead">Faturamento aqui é função de posição na fila. Entender quem tem prioridade, como se perde a posição e como se recupera é o que separa a credenciada que fatura da que fica parada.</p>
+
+    <h3>Como a fila funciona <span class="cite">DOC 4, p.74-77</span></h3>
+    <ul>
+      <li>A distribuição roda em <strong>dois grupos separados</strong>: (a) Avaliação de imóvel (AVA-101 e AVR-102); (b) demais serviços. <span class="cite">DOC 4 item 1.1, p.74</span></li>
+      <li><strong>Prioridade</strong> = empresa com <strong>mais tempo sem receber OS</strong> naquela microrregião. Empate → <strong>sorteio</strong>. <span class="cite">item 1.2.1, p.74</span></li>
+      <li><strong>RCV-501</strong> (relatório com vistoria) não entra em classificação: vai preferencialmente para a <strong>mesma empresa</strong> que fez a etapa anterior. <span class="cite">item 1.2.2, p.74</span></li>
+      <li>EVT, RAE, AVD, AVA-103/104 e RAU são distribuídos em <strong>lotes</strong> por empreendimento. <span class="cite">item 1.2.4, p.74</span></li>
+      <li>Sem empresa preferencial na microrregião → usa a fila da <strong>microrregião mais próxima</strong>, sem alterar a posição da empresa lá. <span class="cite">item 1.2.3, p.74</span></li>
+    </ul>
+
+    <h3>Recusa de serviço <span class="cite">DOC 4 item 3, p.75-76</span></h3>
+    <p>A recusa deve ser justificada até as <strong>16h do dia útil seguinte</strong> à convocação. <strong>Silêncio = serviço aceito.</strong> A recusa formal implica:</p>
+    <ul>
+      <li>Cancelamento da OS;</li>
+      <li><strong>Afastamento automático total de 7 dias corridos</strong> na microrregião da OS recusada;</li>
+      <li>Pontuação negativa no ANS;</li>
+      <li>Ida para o <strong>final da fila</strong> da microrregião;</li>
+      <li><strong>Perda definitiva</strong> da preferência dos lotes que conduzia. <span class="cite">item 3.1.1, p.75-76</span></li>
+    </ul>
+    <div class="box tip"><div class="bt">Recusas que NÃO penalizam</div><p>Recusa por <strong>conflito de interesse</strong> (dentro do prazo) <span class="cite">item 3.1.3, p.76</span> e recusa de serviço em <strong>microrregião não preferencial</strong> <span class="cite">item 3.1.4, p.76</span> não geram as penalidades do item 3.1.1.</p></div>
+
+    <h3>Afastamento e retorno</h3>
+    <p>Durante o afastamento temporário (it.24), o Banco pode <strong>reclassificar</strong> os serviços do empreendimento que você conduzia. Ao <strong>retornar</strong>, a contratada <strong>readquire a preferência</strong> no acompanhamento daquele empreendimento. <span class="cite">DOC 4 item 1.2.4.4, p.75</span> Já o afastamento por <strong>sanção/ANS</strong> joga a empresa para o <strong>fim da fila</strong> e faz <strong>perder definitivamente</strong> os lotes. <span class="cite">item 6.3, p.77</span></p>
+
+    <h3>Exemplos práticos</h3>
+    <div class="box"><div class="bt">Exemplo 1, Posição na fila</div><p>Você está há 40 dias sem receber OS na microrregião X (avaliação). Surge uma AVA-101 em X. Como você é quem está há mais tempo sem serviço, é convocada primeiro. <span class="cite">item 1.2.1, p.74</span></p></div>
+    <div class="box"><div class="bt">Exemplo 2, Recusa cara</div><p>Convocada numa terça, você não responde até 16h de quarta. O serviço é considerado <strong>aceito</strong>. Se depois recusar formalmente: 7 dias fora da microrregião + pontuação negativa + fim da fila. <span class="cite">item 3.1 e 3.1.1, p.75-76</span></p></div>
+    <div class="box"><div class="bt">Exemplo 3, Lote e afastamento</div><p>Você conduz o acompanhamento (RAE) de um empreendimento e tira 10 dias de afastamento temporário. O Banco reclassifica a próxima medição para outra empresa. Quando você volta, readquire a preferência das fases seguintes daquele empreendimento. <span class="cite">item 1.2.4.4, p.75</span></p></div>
+    <div class="box risk"><div class="bt">Exemplo 4, ANS x afastamento voluntário</div><p>Se o afastamento for por <strong>sanção/ANS</strong> (não voluntário), você não readquire o lote: vai para o fim da fila e <strong>perde definitivamente</strong> a preferência daquele empreendimento. A diferença entre férias e punição é enorme. <span class="cite">item 6.3, p.77 · item 1.2.4.3, p.75</span></p></div>
+
+    <div class="nav-foot"><button class="btn" data-action="prev">← Ausências</button><button class="btn primary" data-action="next">Próximo → Penalidades</button></div>
+  </section>
+
+  <!-- ===================== BLOCO 08 ===================== -->
+  <section class="slide">
+    <div class="seclabel">Bloco 08 · Penalidades e Riscos</div>
+    <h2>O <em>ANS</em> e a matriz de risco</h2>
+    <p class="lead">Há dois sistemas punitivos paralelos: o desconto no pagamento (ANS 1 e 2) e a pontuação cumulativa que leva à exclusão temporária (ANS 3). Some isso às sanções administrativas. Quem decora as tabelas opera sem medo.</p>
+
+    <h3>ANS 1, Prazo de atendimento (desconto no pagamento) <span class="cite">DOC 5, p.79</span></h3>
+    <table class="tbl">
+      <tr><th>Atraso</th><th>% pago da OS</th></tr>
+      <tr><td>Sem atraso</td><td>100%</td></tr>
+      <tr><td>1 dia</td><td>85%</td></tr>
+      <tr><td>2 dias</td><td>82,5%</td></tr>
+      <tr><td>3 dias ou mais</td><td>80%</td></tr>
+    </table>
+
+    <h3>ANS 2, Qualidade / devoluções (desconto no pagamento) <span class="cite">DOC 5, p.80</span></h3>
+    <table class="tbl">
+      <tr><th>Devoluções para correção</th><th>% pago da OS</th></tr>
+      <tr><td>1 devolução</td><td>90%</td></tr>
+      <tr><td>2 devoluções</td><td>85%</td></tr>
+      <tr><td>3 ou mais</td><td>80%</td></tr>
+    </table>
+
+    <h3>ANS 3, Pontuação cumulativa → exclusão temporária <span class="cite">DOC 5, p.80-83</span></h3>
+    <p>Pontos negativos somam-se em <strong>duas contas independentes</strong>: (1) AVA-101/AVR-102/RCV-501; (2) demais serviços. Pode-se ser excluído de um grupo e seguir no outro. <span class="cite">item 3.3, p.81</span></p>
+    <table class="tbl">
+      <tr><th>Evento (grupo avaliação)</th><th>Pontos</th></tr>
+      <tr><td>Não informar/informar agendamento da vistoria após 2 dias úteis</td><td>-5</td></tr>
+      <tr><td>Atraso de 1 dia útil</td><td>-5</td></tr>
+      <tr><td>Atraso até 2 dias úteis</td><td>-10</td></tr>
+      <tr><td>Atraso superior a 2 dias úteis</td><td>-15</td></tr>
+      <tr><td>Inexecução ou recusa de uma OS</td><td>-30</td></tr>
+      <tr><td>Ausência de anexos obrigatórios</td><td>-5</td></tr>
+      <tr><td>Erro formal no formulário</td><td>-10</td></tr>
+      <tr><td>Erro no modelo de inferência / descumprir NBR 14.653</td><td>-30</td></tr>
+    </table>
+    <p class="small">Demais serviços (Tabela 6/7, p.82-83): atraso 1 dia -5 · até 2 dias -15 · &gt;2 dias -20 · inexecução/recusa -30.</p>
+
+    <table class="tbl">
+      <tr><th>Pontuação acumulada</th><th>Exclusão temporária</th></tr>
+      <tr><td>-90 pontos</td><td>90 dias corridos</td></tr>
+      <tr><td>-180 pontos</td><td>180 dias corridos</td></tr>
+      <tr><td>-270 / -360 / -450 pontos</td><td>365 dias corridos + Processo Administrativo e eventual rescisão</td></tr>
+    </table>
+    <p class="small">Quem está conduzindo serviço e atinge pontuação de exclusão <strong>perde definitivamente</strong> a preferência dos lotes. <span class="cite">DOC 5 obs., p.83</span></p>
+
+    <h3>Matriz de risco, situação × consequência</h3>
+    <table class="tbl">
+      <tr><th>Situação</th><th>Consequência</th><th>Gravidade</th><th>Como evitar</th></tr>
+      <tr><td>Atraso na entrega</td><td>Desconto ANS 1 (até -20% do valor) + pontos negativos</td><td><span class="pill c">Média</span></td><td>Repactuar prazo com justificativa (AVA-101/AVR-102: 2 dias úteis) <span class="cite">DOC 2 it.7, p.66</span></td></tr>
+      <tr><td>Recusa de OS (microrregião preferencial)</td><td>7 dias fora + fim da fila + -30 pts + perda de lotes</td><td><span class="pill n">Alta</span></td><td>Recusar só por conflito de interesse, dentro do prazo <span class="cite">DOC 4 it.3.1.3, p.76</span></td></tr>
+      <tr><td>Erro no laudo / NBR 14.653</td><td>Devolução (ANS 2) + -30 pts; correção em 2 dias úteis (RAE: 1 dia)</td><td><span class="pill n">Alta</span></td><td>Padronizar modelo de inferência e checklist NBR <span class="cite">DOC 4 it.4.2, p.76</span></td></tr>
+      <tr><td>Ausência na vistoria / sem profissional habilitado</td><td>Trabalho irregular; Banco pode exigir foto/geolocalização</td><td><span class="pill n">Alta</span></td><td>Garantir presença do profissional habilitado <span class="cite">DOC 4 it.5.4/5.5, p.77</span></td></tr>
+      <tr><td>ART/RRT fora do prazo</td><td>Inexecução: fora da fila até regularizar + pontos</td><td><span class="pill n">Alta</span></td><td>Abrir ART/RRT ANTES da execução <span class="cite">DOC 2 it.34, p.68</span></td></tr>
+      <tr><td>Problema documental (habilitação)</td><td>Arquivamento do requerimento; sanções possíveis</td><td><span class="pill c">Média</span></td><td>Manter certidões válidas; regularizar em 3 dias úteis <span class="cite">6.10, p.18</span></td></tr>
+      <tr><td>Alteração societária não comunicada</td><td>Reavaliação da capacitação; risco de cancelamento</td><td><span class="pill c">Média</span></td><td>Comunicar em 48h (alteração social) / 10 dias (quadro) <span class="cite">Cl.14ª p.50 · DOC 2 it.21, p.67</span></td></tr>
+      <tr><td>Perda do responsável técnico</td><td>Afastamento obrigatório da microrregião; risco de rescisão</td><td><span class="pill n">Alta</span></td><td>Redundância de RTs por microrregião <span class="cite">it.24.1, p.68</span></td></tr>
+      <tr><td>Documento falso</td><td>Suspensão até 2 anos + desclassificação/cancelamento</td><td><span class="pill n">Crítica</span></td><td>Jamais, item 9.1.3 a / 10.5.1 <span class="cite">p.21 e 22</span></td></tr>
+    </table>
+
+    <h3>Sanções administrativas (edital e contrato)</h3>
+    <ul>
+      <li><strong>Advertência</strong> (descumprimento sem prejuízo ao Banco). <span class="cite">item 9.1.1, p.20</span></li>
+      <li><strong>Multa</strong>: até 20% do valor da NF/fatura do mês ou da obrigação inadimplida; reincidência sobe 1% a cada vez até 30%. <span class="cite">Cl. 26ª e §2, p.52-53</span></li>
+      <li><strong>Suspensão temporária</strong> de licitar/contratar com o BB por até 2 anos. <span class="cite">item 9.1.3, p.21 · Cl. 24ª, p.52</span></li>
+      <li>Defesa prévia assegurada em 10 dias úteis. <span class="cite">item 9.4, p.22</span></li>
+    </ul>
+
+    <div class="nav-foot"><button class="btn" data-action="prev">← Distribuição</button><button class="btn primary" data-action="next">Próximo → 100+ Q&A</button></div>
+  </section>
+
+  <!-- ===================== BLOCO 09 ===================== -->
+  <section class="slide">
+    <div class="seclabel">Bloco 09 · Dúvidas Frequentes</div>
+    <h2>100+ perguntas que <em>alunos</em> realmente fazem</h2>
+    <p class="lead">Todas respondidas com base exclusiva no edital 2024/00940. Use a busca para achar a sua. Onde a resposta é dedução, está marcada como interpretação.</p>
+    <div class="qa-tools">
+      <input class="qa-search" id="qaSearch" type="text" placeholder="Buscar pergunta (ex: férias, sócio, microrregião, ART)...">
+      <span class="qa-count" id="qaCount"></span>
+    </div>
+    <div id="qaList">
+
+      <div class="qa-group">A) Participação e elegibilidade</div>
+      <details class="qa"><summary><span class="qn">Q1</span><span>Preciso ter empresa ou posso me credenciar como pessoa física?</span></summary><div class="ans">Tem que ser pessoa jurídica, incluindo empresário individual. Pessoa física pura não se credencia. <span class="cite">item 2.1, p.4</span></div></details>
+      <details class="qa"><summary><span class="qn">Q2</span><span>MEI pode participar?</span></summary><div class="ans">Sim, o edital lista o Microempreendedor Individual entre as formas aceitas, com o CCMEI verificado no Portal do Empreendedor. Atenção: o objeto e a habilitação técnica precisam ser compatíveis. <span class="cite">item 6.3.4, p.10</span></div></details>
+      <details class="qa"><summary><span class="qn">Q3</span><span>Minha empresa precisa de registro no CREA ou no CAU?</span></summary><div class="ans">Em um dos dois, conforme o conselho dos profissionais. O objeto social precisa contemplar serviços técnicos de engenharia e/ou arquitetura. <span class="cite">item 2.1, p.4 · 6.3.10.2, p.11</span></div></details>
+      <details class="qa"><summary><span class="qn">Q4</span><span>Sou arquiteta, posso me credenciar?</span></summary><div class="ans">Sim. O objeto admite profissionais do CAU e os pré-requisitos aceitam formação em Arquitetura. <span class="cite">item 2.1, p.4 · 6.5, p.13</span></div></details>
+      <details class="qa"><summary><span class="qn">Q5</span><span>Empresa em recuperação judicial pode?</span></summary><div class="ans">Sim, desde que apresente certidão da instância judicial competente atestando aptidão econômico-financeira. <span class="cite">item 3.4, p.6 · 6.3.8.2, p.10</span></div></details>
+      <details class="qa"><summary><span class="qn">Q6</span><span>Posso participar em consórcio com outra empresa?</span></summary><div class="ans">Não. É vedada a participação de empresas constituídas sob forma de consórcio. <span class="cite">item 3.2 e, p.4</span></div></details>
+      <details class="qa"><summary><span class="qn">Q7</span><span>Tenho um parente que trabalha no Banco do Brasil. Isso me impede?</span></summary><div class="ans">Impede se ele for dirigente/membro da administração, ou empregado cujas atribuições envolvam a contratação, e você for sócio/administrador/procurador, vale parentesco até 3º grau. É a regra de nepotismo. <span class="cite">item 3.2 i–j e 3.5, p.5-6</span></div></details>
+      <details class="qa"><summary><span class="qn">Q8</span><span>Ex-funcionário do BB pode credenciar empresa?</span></summary><div class="ans">Há carência: sociedade cujo sócio/administrador/procurador rompeu vínculo com o BB há menos de 6 meses fica impedida. <span class="cite">item 3.2 s, p.6</span></div></details>
+      <details class="qa"><summary><span class="qn">Q9</span><span>Estou cumprindo suspensão aplicada pelo BB. Posso entrar?</span></summary><div class="ans">Não, enquanto durar a penalidade de suspensão. <span class="cite">item 3.2 f, p.4</span></div></details>
+      <details class="qa"><summary><span class="qn">Q10</span><span>Empresa em falência pode?</span></summary><div class="ans">Não, falência, dissolução ou liquidação impedem a participação. <span class="cite">item 3.2 h, p.5</span></div></details>
+      <details class="qa"><summary><span class="qn">Q11</span><span>Quem elaborou o projeto básico do credenciamento pode participar?</span></summary><div class="ans">Não, nem a empresa ligada a ele, salvo na condição de consultor técnico exclusivo a serviço do Banco. <span class="cite">item 3.2 a–c e 3.3, p.4-6</span></div></details>
+      <details class="qa"><summary><span class="qn">Q12</span><span>Até quando eu poderia ter feito o requerimento?</span></summary><div class="ans">Até 18/12/2025 (18 meses do início da vigência). Essa janela já encerrou neste edital. <span class="cite">item 1.6.1 / 5.1.1, p.3 e 8</span></div></details>
+      <details class="qa"><summary><span class="qn">Q13</span><span>O credenciamento garante que vou receber serviço?</span></summary><div class="ans">Não. A divulgação de serviços e critérios não gera expectativa de faturamento; o credenciamento não importa necessariamente em contratação. <span class="cite">item 10.1 e 10.2, p.22</span></div></details>
+      <details class="qa"><summary><span class="qn">Q14</span><span>Quantas empresas o BB credencia?</span></summary><div class="ans">Não há limite de vagas, é credenciamento, todos os que cumprem os requisitos entram. A disputa é por fila de distribuição, não por número de vagas. <span class="cite">item 3.1, p.4 · DOC 4, p.74</span></div></details>
+      <details class="qa"><summary><span class="qn">Q15</span><span>Posso enviar o requerimento pelo malote ou numa agência?</span></summary><div class="ans">Não. Só pelo e-mail indicado (cesupcontrat.creden@bb.com.br), em .pdf e .xls. Malote e agências não são aceitos. <span class="cite">item 5.3 e 5.6, p.8</span></div></details>
+
+      <div class="qa-group">B) Documentos e habilitação</div>
+      <details class="qa"><summary><span class="qn">Q16</span><span>Posso me habilitar pelo SICAF em vez de mandar tudo pro Banco?</span></summary><div class="ans">Sim, é uma opção. Cadastro nos níveis I, II, III, V e VI cobre jurídica, seguridade, técnica e econômico-financeira. <span class="cite">item 6.2 e 6.6, p.9 e 15</span></div></details>
+      <details class="qa"><summary><span class="qn">Q17</span><span>Quais documentos jurídicos preciso?</span></summary><div class="ans">Ato constitutivo/contrato social registrado com administradores, CNPJ e inscrição de contribuinte (se houver), com objeto compatível. <span class="cite">item 6.3.1–6.3.6, p.10</span></div></details>
+      <details class="qa"><summary><span class="qn">Q18</span><span>Preciso de certidão de falência?</span></summary><div class="ans">Sim, certidão negativa de falência válida; onde houver mais de um cartório distribuidor, uma por cartório. <span class="cite">item 6.3.8, p.10</span></div></details>
+      <details class="qa"><summary><span class="qn">Q19</span><span>Como comprovo o vínculo do meu engenheiro com a empresa?</span></summary><div class="ans">Por certidão do CREA/CAU atestando vínculo profissional regular entre a PJ e o RT. <span class="cite">item 6.3.10.4, p.11</span></div></details>
+      <details class="qa"><summary><span class="qn">Q20</span><span>Os documentos têm validade?</span></summary><div class="ans">Sem prazo expresso, valem 90 dias da emissão. Exceção: atestados de qualificação técnica não têm prazo de validade. <span class="cite">item 6.11.1/6.11.2, p.18</span></div></details>
+      <details class="qa"><summary><span class="qn">Q21</span><span>Mandei a documentação incompleta. Perdi tudo?</span></summary><div class="ans">Não imediatamente: você é avisado por e-mail e tem 3 dias úteis para regularizar. <span class="cite">item 6.3.7 / 6.6.2.2, p.10 e 16</span></div></details>
+      <details class="qa"><summary><span class="qn">Q22</span><span>Meu pedido foi deferido parcialmente. E agora?</span></summary><div class="ans">Você tem 5 dias úteis para regularizar/complementar e pedir reanálise. <span class="cite">item 6.17, p.18</span></div></details>
+      <details class="qa"><summary><span class="qn">Q23</span><span>Fui indeferido. Quando posso tentar de novo?</span></summary><div class="ans">Após 90 dias corridos da comunicação do indeferimento. <span class="cite">item 6.18, p.18</span></div></details>
+      <details class="qa"><summary><span class="qn">Q24</span><span>Posso recorrer do indeferimento?</span></summary><div class="ans">Sim, em 5 dias úteis a contar do dia seguinte ao e-mail de indeferimento, dirigido à Comissão de Credenciamento. <span class="cite">item 7.2 e 7.3, p.18</span></div></details>
+      <details class="qa"><summary><span class="qn">Q25</span><span>Quanto tempo o Banco leva para analisar?</span></summary><div class="ans">Até 100 dias úteis a partir da entrega da documentação completa. Se houver complementação/reanálise, o prazo reinicia. <span class="cite">item 5.11 e 5.12, p.8</span></div></details>
+      <details class="qa"><summary><span class="qn">Q26</span><span>O Banco pode pedir documento original depois?</span></summary><div class="ans">Sim, quando houver dúvida sobre a integridade; você tem 3 dias úteis para apresentar. <span class="cite">item 6.9 e 6.9.1, p.17</span></div></details>
+      <details class="qa"><summary><span class="qn">Q27</span><span>Declaração falsa tem que consequência?</span></summary><div class="ans">Desclassificação imediata ou cancelamento do contrato, além das sanções cabíveis. <span class="cite">item 6.14 e 10.5.1, p.18 e 22</span></div></details>
+      <details class="qa"><summary><span class="qn">Q28</span><span>Que declarações eu assino?</span></summary><div class="ans">Conhecimento das condições; não possuir as pessoas do item 3.2; não emprega menor (Anexo V); inexistência de fato superveniente (Anexo VI); inexistência de funcionário CESUP (Anexo VII); vínculos com funcionários do Centro (Anexo VIII). <span class="cite">item 6.7, p.16</span></div></details>
+      <details class="qa"><summary><span class="qn">Q29</span><span>Preciso comprovar regularidade com a Seguridade Social?</span></summary><div class="ans">Sim, em qualquer via de habilitação (SICAF ou Banco). <span class="cite">item 6.7.1, p.16</span></div></details>
+      <details class="qa"><summary><span class="qn">Q30</span><span>O objeto social da minha empresa precisa dizer algo específico?</span></summary><div class="ans">Sim, precisa contemplar a execução de serviços técnicos de engenharia e/ou arquitetura. <span class="cite">item 6.3.10.2, p.11</span></div></details>
+
+      <div class="qa-group">C) Estruturação, RT e vínculos</div>
+      <details class="qa"><summary><span class="qn">Q31</span><span>Posso ter mais de um responsável técnico?</span></summary><div class="ans">Sim. A empresa pode enviar quantos formulários de Requerimento forem necessários para registrar todos os técnicos e suas opções. <span class="cite">DOC 1 item 2, p.64</span></div></details>
+      <details class="qa"><summary><span class="qn">Q32</span><span>Posso contratar outro engenheiro depois de credenciada?</span></summary><div class="ans">Sim, com qualificação técnica do novo profissional, respeitado o prazo de 3 meses após a assinatura para pedidos de alteração. <span class="cite">6.3.10.8.3, p.12 · 5.13, p.8</span></div></details>
+      <details class="qa"><summary><span class="qn">Q33</span><span>Posso incluir um arquiteto no quadro?</span></summary><div class="ans">Sim, registrado no CAU e atendendo o pré-requisito do pacote pretendido. <span class="cite">2.1, p.4 · 6.5, p.13</span></div></details>
+      <details class="qa"><summary><span class="qn">Q34</span><span>Posso usar funcionários CLT como técnicos?</span></summary><div class="ans">Sim, a empresa designa empregados de seu quadro, especializados e credenciados, com vínculo regular comprovado no conselho. <span class="cite">Cl. 6ª, p.47 · 6.3.10.4, p.11</span></div></details>
+      <details class="qa"><summary><span class="qn">Q35</span><span>Posso usar prestadores de serviço / autônomos?</span></summary><div class="ans">Cuidado: é vedada a subcontratação total ou parcial do objeto. Terceiro só entra se houver vínculo regular reconhecido pelo conselho, não como subcontratação. <span class="cite">3.6, p.6 · Cl. 1ª §2, p.43</span></div></details>
+      <details class="qa"><summary><span class="qn">Q36</span><span>Posso usar profissional PJ (nota fiscal)?</span></summary><div class="ans"><b>Interpretação:</b> o edital não cita "PJ contra PJ" como vínculo válido e proíbe subcontratação. A leitura técnica é que só vale se o conselho reconhecer vínculo regular do profissional com a empresa; nota fiscal de subcontratação não atende. <span class="cite">3.6, p.6 · 6.3.10.4, p.11</span></div></details>
+      <details class="qa"><summary><span class="qn">Q37</span><span>Sócio pode ser o responsável técnico?</span></summary><div class="ans">Sim, desde que não se enquadre nas vedações do item 3.2 (funcionário/parente do BB etc.). <span class="cite">3.2, p.5-6</span></div></details>
+      <details class="qa"><summary><span class="qn">Q38</span><span>Posso usar estagiário para fazer a vistoria e assinar?</span></summary><div class="ans">Não. O trabalho é assinado obrigatoriamente por profissional habilitado e que efetivamente realizou o serviço; vedadas procurações. <span class="cite">DOC 2 item 8, p.66</span></div></details>
+      <details class="qa"><summary><span class="qn">Q39</span><span>Posso subcontratar parte técnica que não domino?</span></summary><div class="ans">Apenas excepcionalmente, serviços complementares em atividades multidisciplinares, e a contratada responde pela integralidade do serviço. <span class="cite">3.6 e 3.7, p.6</span></div></details>
+      <details class="qa"><summary><span class="qn">Q40</span><span>Há limite máximo de responsáveis técnicos?</span></summary><div class="ans">O edital não fixa máximo. <b>Interpretação:</b> você escala incluindo quantos profissionais com vínculo regular conseguir qualificar. <span class="cite">DOC 1 item 2, p.64</span></div></details>
+      <details class="qa"><summary><span class="qn">Q41</span><span>Se eu trocar o RT, perco a dispensa do edital anterior?</span></summary><div class="ans">Sim. A dispensa do 2019/01725 só vale enquanto mantido o vínculo; na troca exige-se documentação técnica completa do entrante. <span class="cite">6.3.10.8.2, p.12</span></div></details>
+      <details class="qa"><summary><span class="qn">Q42</span><span>Dois currículos do mesmo profissional em empresas diferentes, vale para quem?</span></summary><div class="ans">Para a primeira empresa que entregou a documentação (data/hora de registro); é desconsiderado nas demais. <span class="cite">6.3.10.9, p.12</span></div></details>
+      <details class="qa"><summary><span class="qn">Q43</span><span>Preciso indicar um preposto?</span></summary><div class="ans">Sim, em até 10 dias úteis da assinatura do contrato. <span class="cite">Cl. 6ª §5, p.48</span></div></details>
+      <details class="qa"><summary><span class="qn">Q44</span><span>O Banco pode me obrigar a trocar um empregado?</span></summary><div class="ans">Sim, pode solicitar a substituição de empregado que não atenda aos padrões, e você tem 48h para trocar, sob pena de multa. <span class="cite">Cl. 6ª §3, p.48</span></div></details>
+      <details class="qa"><summary><span class="qn">Q45</span><span>Mudei o endereço da empresa. Preciso avisar?</span></summary><div class="ans">Sim, qualquer alteração de estrutura/endereço deve ser comunicada em 10 dias. <span class="cite">DOC 2 item 21, p.67</span></div></details>
+
+      <div class="qa-group">D) Microrregiões e atuação geográfica</div>
+      <details class="qa"><summary><span class="qn">Q46</span><span>Quantas microrregiões posso escolher?</span></summary><div class="ans">De 1 a 6 por responsável técnico, respeitando: MR 1 = A/B/C; MR 2-4 = B/C; MR 5-6 = C; tudo em no máximo 2 UFs. <span class="cite">DOC 1 item 4, p.64</span></div></details>
+      <details class="qa"><summary><span class="qn">Q47</span><span>Posso atuar em outro estado?</span></summary><div class="ans">Sim, a abrangência é nacional e você pode receber OS em qualquer microrregião do país. As preferenciais ficam limitadas a 2 UFs por RT. <span class="cite">DOC 1 itens 3, 3.1 e 4.2, p.64</span></div></details>
+      <details class="qa"><summary><span class="qn">Q48</span><span>O que são microrregiões tipo A, B e C?</span></summary><div class="ans">Uma classificação do Banco (Anexo XIII) que escalona as microrregiões; afeta quais posições de preferência você pode ocupar. As microrregiões são indivisíveis. <span class="cite">DOC 1 item 1.1 e 3.2, p.64 · Anexo XIII, p.93</span></div></details>
+      <details class="qa"><summary><span class="qn">Q49</span><span>Posso recusar serviço em microrregião que não escolhi sem ser punida?</span></summary><div class="ans">Sim. Recusar OS em microrregião não preferencial, dentro do prazo, não gera as penalidades de recusa. <span class="cite">DOC 4 item 3.1.4, p.76</span></div></details>
+      <details class="qa"><summary><span class="qn">Q50</span><span>Posso mudar minhas microrregiões depois?</span></summary><div class="ans">Sim, por pedido de alteração, mínimo 3 meses após a assinatura, atendido em até 100 dias úteis. <span class="cite">item 5.13, p.8</span></div></details>
+      <details class="qa"><summary><span class="qn">Q51</span><span>Quem atende quando ninguém escolheu aquela microrregião?</span></summary><div class="ans">O Banco convida pela fila da microrregião mais próxima, sem alterar a posição da empresa convidada na fila onde ela é preferencial. <span class="cite">DOC 4 item 1.2.3, p.74</span></div></details>
+      <details class="qa"><summary><span class="qn">Q52</span><span>Posso ter microrregiões preferenciais em 3 estados?</span></summary><div class="ans">Não por RT, o limite é 2 UFs por responsável técnico. Com vários RTs, a empresa cobre mais estados. <span class="cite">DOC 1 item 4.2, p.64</span></div></details>
+      <details class="qa"><summary><span class="qn">Q53</span><span>A microrregião pode ser dividida entre empresas?</span></summary><div class="ans">Não. As microrregiões definidas pelo Banco são indivisíveis. <span class="cite">DOC 1 item 3.2, p.64</span></div></details>
+
+      <div class="qa-group">E) Execução, prazos e assinatura</div>
+      <details class="qa"><summary><span class="qn">Q54</span><span>Quem pode assinar o laudo?</span></summary><div class="ans">O profissional vinculado, habilitado naquela atividade/microrregião e que realizou o serviço, mais o representante legal. Sem procurações. <span class="cite">DOC 2 itens 8 e 9, p.66</span></div></details>
+      <details class="qa"><summary><span class="qn">Q55</span><span>Quando começa a contar o prazo de execução?</span></summary><div class="ans">No 1º dia útil seguinte ao envio da OS; encerra às 16h (Brasília) do último dia útil previsto. Usa calendário de feriados nacionais. <span class="cite">DOC 4 item 4.3, p.76</span></div></details>
+      <details class="qa"><summary><span class="qn">Q56</span><span>Posso pedir mais prazo?</span></summary><div class="ans">Para AVA-101 e AVR-102, há 2 dias úteis da convocação para informar falta de documentação, pedir repactuação de prazo (com justificativa) ou informar o agendamento da vistoria. <span class="cite">DOC 2 item 7, p.66</span></div></details>
+      <details class="qa"><summary><span class="qn">Q57</span><span>Tenho que abrir ART antes ou depois?</span></summary><div class="ans">Antes da execução do serviço; entregue/finalizada até o mês subsequente. Sem ART/RRT no prazo = inexecução. <span class="cite">DOC 2 itens 4 e 34, p.65 e 68</span></div></details>
+      <details class="qa"><summary><span class="qn">Q58</span><span>Em quanto tempo preciso corrigir um laudo devolvido?</span></summary><div class="ans">2 dias úteis para a maioria das atividades; 1 dia útil para RAE. <span class="cite">DOC 4 item 4.2, p.76 · DOC 2 item 12, p.66</span></div></details>
+      <details class="qa"><summary><span class="qn">Q59</span><span>O Banco pode conferir se eu fui mesmo à vistoria?</span></summary><div class="ans">Sim, pode exigir foto, geolocalização ou outro meio que comprove a presença do profissional habilitado. <span class="cite">DOC 4 item 5.5, p.77</span></div></details>
+      <details class="qa"><summary><span class="qn">Q60</span><span>Como entrego o laudo?</span></summary><div class="ans">Em meio digital com assinatura eletrônica/certificação ICP-Brasil (RT + representante legal) por plataforma digital ou e-mail. Via impressa/mídia só se solicitado. <span class="cite">DOC 4 item 5.2/5.3, p.77</span></div></details>
+      <details class="qa"><summary><span class="qn">Q61</span><span>Preciso de celular/app específico?</span></summary><div class="ans">Quando solicitado, sim, dispositivo Android (ou similar) compatível com o aplicativo indicado pelo Banco. <span class="cite">DOC 2 item 33, p.68</span></div></details>
+      <details class="qa"><summary><span class="qn">Q62</span><span>Quem paga ART, deslocamento, fotos?</span></summary><div class="ans">A contratada, todos os custos da atividade técnica estão incluídos na remuneração. <span class="cite">DOC 2 item 6, p.65-66 · Cl. 3ª §único, p.45</span></div></details>
+      <details class="qa"><summary><span class="qn">Q63</span><span>Quando recebo o pagamento?</span></summary><div class="ans">Em conta no BB, até o último dia útil do mês subsequente à conclusão, mediante nota fiscal com os dados exigidos. <span class="cite">Cl. 5ª, p.46</span></div></details>
+      <details class="qa"><summary><span class="qn">Q64</span><span>O Banco pode rever os valores dos serviços?</span></summary><div class="ans">Sim, adotando como parâmetro os preços de mercado. <span class="cite">Cl. 4ª, p.46</span></div></details>
+      <details class="qa"><summary><span class="qn">Q65</span><span>O que é o Formulário LIC?</span></summary><div class="ans">Levantamento de Indícios de Contaminação em Imóveis Urbanos, entregue com o laudo quando o MECI ou o Banco exigir. <span class="cite">DOC 2 item 2, p.65 · Anexo I 2.1.1, p.24</span></div></details>
+      <details class="qa"><summary><span class="qn">Q66</span><span>Posso usar o nome do Banco no meu marketing?</span></summary><div class="ans">Não. Usar o nome do BB em cartões, anúncios e impressos enseja rescisão imediata. <span class="cite">DOC 2 item 17, p.67 · Cl. 17ª, p.50</span></div></details>
+
+      <div class="qa-group">F) Ausências, férias, gravidez, saúde</div>
+      <details class="qa"><summary><span class="qn">Q67</span><span>Posso tirar férias?</span></summary><div class="ans">Sim, solicitando afastamento temporário com 5 dias corridos de antecedência, período mínimo de 7 dias. Você segue responsável pelos trabalhos já demandados. <span class="cite">DOC 2 item 24, p.67</span></div></details>
+      <details class="qa"><summary><span class="qn">Q68</span><span>Posso engravidar e continuar credenciada?</span></summary><div class="ans">Sim. Não há cláusula de maternidade, e é vedada discriminação por estado gravídico. <b>Interpretação:</b> usa-se o afastamento temporário pelo período necessário. <span class="cite">DOC 2 item 29, p.68 · item 24, p.67</span></div></details>
+      <details class="qa"><summary><span class="qn">Q69</span><span>Existe licença-maternidade no edital?</span></summary><div class="ans">Não há previsão específica. <b>Interpretação:</b> o instrumento é o afastamento temporário (motivo "afastamento de profissional / força maior"). <span class="cite">DOC 2 item 24, p.67</span></div></details>
+      <details class="qa"><summary><span class="qn">Q70</span><span>Fiquei doente. O que faço?</span></summary><div class="ans">Solicita afastamento temporário (licença saúde é citada expressamente). Se for a única habilitada da microrregião, o afastamento dela é obrigatório. <span class="cite">DOC 4 item 1.2.4.4, p.75 · DOC 2 item 24.1, p.68</span></div></details>
+      <details class="qa"><summary><span class="qn">Q71</span><span>Qual o prazo mínimo de afastamento?</span></summary><div class="ans">7 dias corridos, solicitado com no mínimo 5 dias corridos de antecedência. <span class="cite">DOC 2 item 24, p.67 · DOC 4 item 6.1, p.77</span></div></details>
+      <details class="qa"><summary><span class="qn">Q72</span><span>Posso pedir afastamento a qualquer momento?</span></summary><div class="ans">Sim, formalmente, por tempo determinado, informando motivo e período, respeitando antecedência e período mínimos. <span class="cite">DOC 4 item 6.1, p.77</span></div></details>
+      <details class="qa"><summary><span class="qn">Q73</span><span>Durante o afastamento, perco os serviços que estava conduzindo?</span></summary><div class="ans">O Banco pode reclassificar durante o período, mas ao retornar você readquire a preferência do acompanhamento daquele empreendimento. <span class="cite">DOC 4 item 1.2.4.4, p.75</span></div></details>
+      <details class="qa"><summary><span class="qn">Q74</span><span>Sou autônoma/única RT. Posso me afastar?</span></summary><div class="ans">Sim, mas o afastamento da microrregião passa a ser obrigatório quando você (única habilitada) ficar impossibilitada. <span class="cite">DOC 2 item 24.1, p.68 · DOC 4 item 6.2, p.77</span></div></details>
+      <details class="qa"><summary><span class="qn">Q75</span><span>O que acontece se o titular da empresa falecer?</span></summary><div class="ans">É hipótese de rescisão do contrato (dissolução da sociedade ou falecimento do contratado). <span class="cite">Cl. 2ª §2 X, p.44</span></div></details>
+      <details class="qa"><summary><span class="qn">Q76</span><span>Sair e voltar depois, dá?</span></summary><div class="ans">Para afastamento voluntário (it.24), sim, com retorno e readquisição da preferência do acompanhamento. Já o afastamento por sanção/ANS joga você para o fim da fila. <span class="cite">DOC 4 item 1.2.4.4 e 6.3, p.75 e 77</span></div></details>
+      <details class="qa"><summary><span class="qn">Q77</span><span>Posso pedir afastamento de uma atividade só?</span></summary><div class="ans">O it.24.1 trata do afastamento de TODAS as atividades de uma microrregião quando há um único profissional impossibilitado. <b>Interpretação:</b> o pedido voluntário do it.24/it.6.1 informa motivo e período; a granularidade é operacionalizada pelo Banco. <span class="cite">DOC 2 it.24.1, p.68 · DOC 4 it.6.1, p.77</span></div></details>
+
+      <div class="qa-group">G) Distribuição, fila e recusa</div>
+      <details class="qa"><summary><span class="qn">Q78</span><span>Como funciona a fila de serviços?</span></summary><div class="ans">Por dois grupos (avaliação AVA-101/AVR-102 e demais). Tem prioridade quem está há mais tempo sem receber OS na microrregião; empate vai a sorteio. <span class="cite">DOC 4 item 1.1 e 1.2.1, p.74</span></div></details>
+      <details class="qa"><summary><span class="qn">Q79</span><span>O RCV-501 também entra na fila?</span></summary><div class="ans">Não, vai preferencialmente para a mesma empresa que fez a etapa anterior do trabalho. <span class="cite">DOC 4 item 1.2.2, p.74</span></div></details>
+      <details class="qa"><summary><span class="qn">Q80</span><span>O que é distribuição em lote?</span></summary><div class="ans">EVT, RAE, AVD, AVA-103/104 e RAU são distribuídos por empreendimento (lote); os itens podem ser acionados separadamente. <span class="cite">DOC 4 item 1.2.4, p.74</span></div></details>
+      <details class="qa"><summary><span class="qn">Q81</span><span>Como recuso um serviço corretamente?</span></summary><div class="ans">Com justificativa, até as 16h do dia útil seguinte à convocação. Se não se manifestar, o serviço é considerado aceito. <span class="cite">DOC 4 item 3.1, p.75</span></div></details>
+      <details class="qa"><summary><span class="qn">Q82</span><span>O que acontece quando recuso?</span></summary><div class="ans">Cancelamento da OS, 7 dias corridos de afastamento automático na microrregião, pontuação negativa, ida ao fim da fila e perda definitiva dos lotes conduzidos. <span class="cite">DOC 4 item 3.1.1, p.75-76</span></div></details>
+      <details class="qa"><summary><span class="qn">Q83</span><span>Existe recusa sem punição?</span></summary><div class="ans">Sim: por conflito de interesse (dentro do prazo) e em microrregião não preferencial. <span class="cite">DOC 4 itens 3.1.3 e 3.1.4, p.76</span></div></details>
+      <details class="qa"><summary><span class="qn">Q84</span><span>Se eu não responder a convocação, é recusa?</span></summary><div class="ans">Não, o silêncio até 16h do dia útil seguinte é considerado aceite do serviço. <span class="cite">DOC 4 item 3.1, p.75</span></div></details>
+      <details class="qa"><summary><span class="qn">Q85</span><span>Perco a posição na fila quando recebo um serviço?</span></summary><div class="ans">A prioridade é de quem está há mais tempo sem receber OS; ao receber, você reinicia esse contador na microrregião. <span class="cite">DOC 4 item 1.2.1, p.74</span></div></details>
+      <details class="qa"><summary><span class="qn">Q86</span><span>Como o Banco escolhe entre duas empresas empatadas?</span></summary><div class="ans">Por sorteio. <span class="cite">DOC 4 item 1.2.1 b, p.74</span></div></details>
+      <details class="qa"><summary><span class="qn">Q87</span><span>O Banco pode mudar a ordem de distribuição?</span></summary><div class="ans">Sim, excepcional e justificadamente, conforme as especificidades de cada serviço. <span class="cite">DOC 4 item 1.3, p.75</span></div></details>
+
+      <div class="qa-group">H) ANS, penalidades e riscos</div>
+      <details class="qa"><summary><span class="qn">Q88</span><span>O que é o ANS?</span></summary><div class="ans">Acordo de Nível de Serviço: mede prazo (ANS 1), qualidade/devoluções (ANS 2) e performance cumulativa (ANS 3), com efeitos no pagamento e na exclusão temporária. <span class="cite">DOC 5, p.79-83</span></div></details>
+      <details class="qa"><summary><span class="qn">Q89</span><span>Quanto perco se atrasar?</span></summary><div class="ans">ANS 1: 1 dia = 85%, 2 dias = 82,5%, 3+ dias = 80% do valor da OS. <span class="cite">DOC 5, p.79</span></div></details>
+      <details class="qa"><summary><span class="qn">Q90</span><span>E se meu laudo for devolvido para correção?</span></summary><div class="ans">ANS 2: 1 devolução = 90%, 2 = 85%, 3+ = 80% do valor da OS. <span class="cite">DOC 5, p.80</span></div></details>
+      <details class="qa"><summary><span class="qn">Q91</span><span>Quantos pontos negativos me excluem temporariamente?</span></summary><div class="ans">-90 pts = 90 dias; -180 = 180 dias; -270/-360/-450 = 365 dias + processo administrativo e eventual rescisão. <span class="cite">DOC 5 Tabela 4/8, p.82-83</span></div></details>
+      <details class="qa"><summary><span class="qn">Q92</span><span>Recusar uma OS dá quantos pontos?</span></summary><div class="ans">-30 pontos (inexecução ou recusa). <span class="cite">DOC 5 Tabela 2/7, p.81 e 83</span></div></details>
+      <details class="qa"><summary><span class="qn">Q93</span><span>Erro no modelo de inferência custa caro?</span></summary><div class="ans">-30 pontos (erro no modelo de inferência ou descumprimento da NBR 14.653). <span class="cite">DOC 5 Tabela 3, p.81</span></div></details>
+      <details class="qa"><summary><span class="qn">Q94</span><span>A pontuação é separada por tipo de serviço?</span></summary><div class="ans">Sim, duas somas independentes: (1) AVA-101/AVR-102/RCV-501; (2) demais. Pode-se ser excluído de uma e seguir na outra. <span class="cite">DOC 5 item 3.3, p.81</span></div></details>
+      <details class="qa"><summary><span class="qn">Q95</span><span>Qual a multa máxima?</span></summary><div class="ans">Até 20% da NF/fatura do mês da irregularidade ou da obrigação inadimplida; reincidência sobe 1% a cada vez até 30%. <span class="cite">Cl. 26ª e §2, p.52-53</span></div></details>
+      <details class="qa"><summary><span class="qn">Q96</span><span>Posso ser suspensa de contratar com o BB?</span></summary><div class="ans">Sim, suspensão temporária por até 2 anos em casos como documento falso, atraso injustificado reiterado, reincidência etc. <span class="cite">item 9.1.3, p.21 · Cl. 27ª, p.53</span></div></details>
+      <details class="qa"><summary><span class="qn">Q97</span><span>Tenho direito de defesa antes da sanção?</span></summary><div class="ans">Sim, defesa prévia em 10 dias úteis, com vista ao processo. <span class="cite">item 9.4, p.22 · Cl. 24ª §1, p.52</span></div></details>
+      <details class="qa"><summary><span class="qn">Q98</span><span>Esqueci de entregar a ART. É grave?</span></summary><div class="ans">Sim, trabalho sem ART/RRT no prazo é inexecução: pontuação negativa e empresa fora da fila até regularizar. <span class="cite">DOC 2 item 34, p.68 · DOC 5, p.81</span></div></details>
+      <details class="qa"><summary><span class="qn">Q99</span><span>O afastamento por ANS é igual ao afastamento por férias?</span></summary><div class="ans">Não. O por ANS/sanção joga ao fim da fila e faz perder definitivamente os lotes; o voluntário permite readquirir a preferência no retorno. <span class="cite">DOC 4 itens 6.3 e 1.2.4.4, p.77 e 75</span></div></details>
+
+      <div class="qa-group">I) Contrato, alterações e encerramento</div>
+      <details class="qa"><summary><span class="qn">Q100</span><span>Posso transferir meu credenciamento para outra empresa?</span></summary><div class="ans">Não. São vedadas cessão, transferência e subcontratação; o serviço é prestado diretamente pela contratada. <span class="cite">Cl. 1ª §2, p.43 · Cl. 2ª §2 VI, p.44</span></div></details>
+      <details class="qa"><summary><span class="qn">Q101</span><span>Posso abrir filial e usar no credenciamento?</span></summary><div class="ans"><b>Interpretação:</b> o edital não exige nem regula filial; a atuação é por profissional habilitado para a atividade/microrregião. Filial não amplia direitos por si só, quem amplia cobertura é RT habilitado. <span class="cite">DOC 1 item 4, p.64</span></div></details>
+      <details class="qa"><summary><span class="qn">Q102</span><span>Posso vender minha empresa / fazer fusão?</span></summary><div class="ans">Em fusão, cisão, incorporação ou associação, o Banco pode rescindir o contrato ou continuar com a empresa resultante. Comunicar alteração social em 48h. <span class="cite">Cl. 15ª, p.50-51 · Cl. 14ª, p.50</span></div></details>
+      <details class="qa"><summary><span class="qn">Q103</span><span>Alteração na composição societária, preciso avisar?</span></summary><div class="ans">Sim, em 10 dias da ocorrência; e o Banco pode reavaliar sua capacitação técnica a cada alteração societária. <span class="cite">DOC 2 item 21, p.67 · item 5.18, p.9</span></div></details>
+      <details class="qa"><summary><span class="qn">Q104</span><span>Quais as hipóteses de rescisão pelo Banco?</span></summary><div class="ans">Descumprimento de cláusulas/prazos, paralisação injustificada, subcontratação não admitida, falência, dissolução/falecimento, alteração social que prejudique a execução, entre outras. <span class="cite">Cl. 2ª §2, p.44</span></div></details>
+      <details class="qa"><summary><span class="qn">Q105</span><span>Posso rescindir o contrato amigavelmente?</span></summary><div class="ans">Sim, com aviso prévio por escrito de no mínimo 90 dias (ou prazo menor negociado). <span class="cite">Cl. 2ª §2 b, p.44</span></div></details>
+      <details class="qa"><summary><span class="qn">Q106</span><span>O que é o Termo de Distrato?</span></summary><div class="ans">O instrumento de encerramento, conforme minuta do Anexo XII. <span class="cite">item 5.21, p.9 · Anexo XII, p.91</span></div></details>
+      <details class="qa"><summary><span class="qn">Q107</span><span>Preciso manter as condições de habilitação durante o contrato?</span></summary><div class="ans">Sim, todas, inclusive regularidade junto à Seguridade Social; deixar de comprovar pode rescindir o contrato. <span class="cite">Cl. 8ª, p.48 · Cl. 8ª §5, p.49</span></div></details>
+      <details class="qa"><summary><span class="qn">Q108</span><span>Tenho que guardar sigilo das informações?</span></summary><div class="ans">Sim, sigilo absoluto, mesmo após o contrato, com Termo de Compromisso de Sigilo de todos os empregados (Documento nº 7). <span class="cite">Cl. 18ª e 19ª, p.51</span></div></details>
+      <details class="qa"><summary><span class="qn">Q109</span><span>De quem são os direitos autorais dos laudos?</span></summary><div class="ans">Passam a ser do Banco (art. 80 da Lei 13.303/16), preservada a identificação do autor e a responsabilidade técnica. <span class="cite">Cl. 22ª, p.52</span></div></details>
+      <details class="qa"><summary><span class="qn">Q110</span><span>Posso usar os créditos do contrato como garantia de empréstimo?</span></summary><div class="ans">Não, é vedado ceder ou usar os créditos do contrato como garantia. <span class="cite">Cl. 16ª, p.50</span></div></details>
+      <details class="qa"><summary><span class="qn">Q111</span><span>O contrato pode ser assinado eletronicamente?</span></summary><div class="ans">Sim, pelo Portal do Fornecedor (PFN); o representante registra a assinatura em 3 dias úteis da convocação. <span class="cite">item 8.3 e 8.4, p.19</span></div></details>
+      <details class="qa"><summary><span class="qn">Q112</span><span>Quanto tempo tenho para assinar o contrato?</span></summary><div class="ans">5 dias úteis da convocação, prorrogável uma vez por igual período com justificativa aceita. <span class="cite">item 8.1 e 8.1.1, p.19</span></div></details>
+      <details class="qa"><summary><span class="qn">Q113</span><span>Posso processar a folha de pagamento no próprio BB?</span></summary><div class="ans">Sim, pode firmar convênio sem custo adicional para processar a folha dos empregados que executam o serviço. <span class="cite">item 8.6, p.20</span></div></details>
+      <details class="qa"><summary><span class="qn">Q114</span><span>Onde resolvo dúvidas sobre o edital?</span></summary><div class="ans">Por e-mail a cesupcontrat.creden@bb.com.br com o assunto "CRED Nº 2024/00940(7421) - ESCLARECIMENTOS". <span class="cite">item 1.2 e 1.3, p.3</span></div></details>
+      <details class="qa"><summary><span class="qn">Q115</span><span>Posso impugnar o edital?</span></summary><div class="ans">Sim, qualquer cidadão pode, a qualquer tempo na vigência, pelo e-mail com o assunto "IMPUGNAÇÃO". <span class="cite">item 4.1 e 4.2, p.7</span></div></details>
+      <details class="qa"><summary><span class="qn">Q116</span><span>O credenciamento pode ser revogado?</span></summary><div class="ans">Sim, a qualquer tempo, independentemente de aviso prévio, com registro das justificativas. <span class="cite">item 1.6.2, p.3 · 10.2, p.22</span></div></details>
+      <details class="qa"><summary><span class="qn">Q117</span><span>Onde vejo a lista de credenciados?</span></summary><div class="ans">No site bb.com.br/editaislicitacoes &gt; Credenciamentos. <span class="cite">item 5.17, p.9</span></div></details>
+      <details class="qa"><summary><span class="qn">Q118</span><span>O Banco pode emitir novos modelos e planilhas durante o contrato?</span></summary><div class="ans">Sim, a qualquer momento, para uniformizar procedimentos; os trabalhos devem seguir os modelos vigentes. <span class="cite">item 5.20, p.9 · DOC 2 item 1, p.65</span></div></details>
+
+    </div>
+    <div class="nav-foot"><button class="btn" data-action="prev">← Penalidades</button><button class="btn primary" data-action="next">Próximo → Oportunidades</button></div>
+  </section>
+
+  <!-- ===================== BLOCO 10 ===================== -->
+  <section class="slide">
+    <div class="seclabel">Bloco 10 · Oportunidades Escondidas</div>
+    <h2>Onde está o <em>dinheiro</em> que os outros não veem</h2>
+    <p class="lead">Lendo o edital como operador, não como candidato: estas são as brechas legais, alavancas de crescimento e vantagens competitivas que estruturam uma empresa que fatura mais e arrisca menos.</p>
+
+    <h3>Brechas operacionais legais</h3>
+    <ul>
+      <li><strong>Cobertura nacional por convite.</strong> Você pode aceitar OS em qualquer microrregião do país sem perder a posição na sua fila preferencial. Mercado extra sem custo de posição. <span class="cite">DOC 1 item 3.1 · DOC 4 item 1.2.3.3, p.64 e 74</span></li>
+      <li><strong>Recusa sem punição.</strong> Em microrregião não preferencial e por conflito de interesse, recusar não gera penalidade, dá para selecionar só o que vale a pena fora da base. <span class="cite">DOC 4 itens 3.1.3 e 3.1.4, p.76</span></li>
+      <li><strong>RCV-501 vinculado.</strong> Quem faz a etapa anterior recebe o RCV preferencialmente. Fazer bem a primeira etapa "puxa" serviço adicional automático. <span class="cite">DOC 4 item 1.2.2, p.74</span></li>
+      <li><strong>Empreendimento faseado.</strong> A empresa classificada pode adquirir o direito de atuar em todas as fases, receita recorrente de longo prazo num único empreendimento. <span class="cite">DOC 4 item 1.2.4.5, p.75</span></li>
+    </ul>
+
+    <h3>Alavancas de expansão e faturamento</h3>
+    <ul>
+      <li><strong>Ampliar microrregiões e pacotes.</strong> A fila é por empresa em cada microrregião (DOC 4 1.2.1), então você cresce entrando em microrregiões novas e habilitando atividades novas, não acumulando profissionais na mesma praça. A receita escala com cobertura, não com marketing. <span class="cite">DOC 1 itens 2 e 4, p.64</span></li>
+      <li><strong>Subir de pacote.</strong> Quem tem o pacote 3 cobre quase todas as atividades de viabilidade e acompanhamento (EVT/RAE/AVD), ticket maior que avaliação simples. <span class="cite">item 6.4, p.13</span></li>
+      <li><strong>Convênio de folha no BB.</strong> Reduz custo administrativo da equipe. <span class="cite">item 8.6, p.20</span></li>
+    </ul>
+
+    <h3>Formas de reduzir risco</h3>
+    <ul>
+      <li><strong>Redundância de RTs.</strong> Dois habilitados por atividade/microrregião eliminam o afastamento obrigatório por impossibilidade do único profissional. <span class="cite">DOC 2 item 24.1, p.68</span></li>
+      <li><strong>Padronização de laudo.</strong> Modelo de inferência e checklist NBR 14.653 fixos cortam devoluções (ANS 2, -90% a -80%) e o erro de -30 pts. <span class="cite">DOC 5, p.80-81</span></li>
+      <li><strong>ART antecipada como rotina.</strong> Abrir ART antes de cada serviço elimina a inexecução por ART em atraso. <span class="cite">DOC 2 item 34, p.68</span></li>
+      <li><strong>Calendário de afastamento.</strong> Programar férias/ausências como afastamento temporário formal preserva os lotes no retorno. <span class="cite">DOC 4 item 1.2.4.4, p.75</span></li>
+    </ul>
+
+    <h3>Vantagens competitivas para empresas maiores</h3>
+    <div class="box tip"><div class="bt">O jogo da escala</div><p>Empresas com vários RTs habilitados em pacotes superiores e múltiplas microrregiões: (1) raramente ficam sem fila ativa; (2) absorvem convites nacionais que pequenas recusam; (3) diluem o impacto de qualquer pontuação negativa entre técnicos; (4) garantem continuidade quando um profissional se afasta. O edital premia estrutura, e pune dependência de uma só pessoa. <span class="cite">DOC 1, DOC 4, DOC 5</span></p></div>
+
+    <div class="box interp"><div class="bt">Interpretação</div><p>Estas "oportunidades" são leitura estratégica das regras combinadas, não estão listadas como benefícios no edital. São deduções defensáveis a partir dos dispositivos citados, úteis para decisão; não são determinação expressa do Banco.</p></div>
+
+    <div class="nav-foot"><button class="btn" data-action="prev">← 100+ Q&A</button><button class="btn primary" data-action="next">Próximo → Checklists</button></div>
+  </section>
+
+  <!-- ===================== BLOCO 11 ===================== -->
+  <section class="slide">
+    <div class="seclabel">Bloco 11 · Checklists Operacionais</div>
+    <h2>Listas de <em>verificação</em> para cada momento</h2>
+    <p class="lead">Imprima, cole na parede, transforme em formulário. Cada checklist remete ao item do edital que o fundamenta.</p>
+
+    <h3>① Antes do credenciamento</h3>
+    <ul>
+      <li>☐ Objeto social contempla engenharia/arquitetura <span class="cite">6.3.10.2, p.11</span></li>
+      <li>☐ Registro e quitação da PJ no CREA/CAU <span class="cite">6.3.10.2, p.11</span></li>
+      <li>☐ Certidão de vínculo regular de cada RT <span class="cite">6.3.10.4, p.11</span></li>
+      <li>☐ Registro/quitação de cada profissional PF <span class="cite">6.3.10.5, p.11</span></li>
+      <li>☐ Comprovação de experiência por profissional (pré-req do pacote) <span class="cite">6.3.10.7 / 6.5, p.11 e 13</span></li>
+      <li>☐ Certidão negativa de falência válida <span class="cite">6.3.8, p.10</span></li>
+      <li>☐ Regularidade da Seguridade Social <span class="cite">6.7.1, p.16</span></li>
+      <li>☐ Declarações dos Anexos V a VIII assinadas <span class="cite">6.7, p.16</span></li>
+      <li>☐ Requerimento (Anexo III) em .xls + .pdf assinado <span class="cite">6.3.10.1, p.11</span></li>
+      <li>☐ Microrregiões definidas (1-6, regra A/B/C, máx 2 UFs) <span class="cite">DOC 1 item 4, p.64</span></li>
+    </ul>
+
+    <h3>② Durante o credenciamento (operação)</h3>
+    <ul>
+      <li>☐ ART/RRT aberta ANTES de cada serviço <span class="cite">DOC 2 item 34, p.68</span></li>
+      <li>☐ Profissional habilitado presente na vistoria (foto/geo) <span class="cite">DOC 4 item 5.5, p.77</span></li>
+      <li>☐ Resposta a convocações até 16h do dia útil seguinte <span class="cite">DOC 4 item 3.1, p.75</span></li>
+      <li>☐ Entrega dentro do prazo da OS (evitar ANS 1) <span class="cite">DOC 3 / DOC 5, p.79</span></li>
+      <li>☐ Laudo com assinatura ICP-Brasil do RT + representante <span class="cite">DOC 4 item 5.3, p.77</span></li>
+      <li>☐ Manter certidões e regularidade vigentes <span class="cite">Cl. 8ª, p.48</span></li>
+    </ul>
+
+    <h3>③ Inclusão de novo profissional</h3>
+    <ul>
+      <li>☐ Aguardar 3 meses da assinatura para pedir alteração <span class="cite">5.13, p.8</span></li>
+      <li>☐ Qualificação técnica completa do novo (6.12/6.13) <span class="cite">6.3.10.8.3, p.12</span></li>
+      <li>☐ Certidão de vínculo regular no conselho <span class="cite">6.3.10.4, p.11</span></li>
+      <li>☐ Comunicar alteração de quadro em 10 dias <span class="cite">DOC 2 item 21, p.67</span></li>
+    </ul>
+
+    <h3>④ Troca de responsável técnico</h3>
+    <ul>
+      <li>☐ Documentação técnica completa do entrante (sem dispensa do 2019) <span class="cite">6.3.10.8.2, p.12</span></li>
+      <li>☐ Verificar redundância para não cair em afastamento obrigatório <span class="cite">DOC 2 item 24.1, p.68</span></li>
+      <li>☐ Comunicar alteração societária em 48h, se for o caso <span class="cite">Cl. 14ª, p.50</span></li>
+      <li>☐ Antecipar possível reavaliação de capacitação pelo Banco <span class="cite">5.18, p.9</span></li>
+    </ul>
+
+    <h3>⑤ Solicitação de afastamento</h3>
+    <ul>
+      <li>☐ Pedido formal (plataforma/e-mail) com motivo e período único <span class="cite">DOC 4 item 6.1, p.77</span></li>
+      <li>☐ Antecedência mínima de 5 dias corridos <span class="cite">DOC 2 item 24, p.67</span></li>
+      <li>☐ Período mínimo de 7 dias corridos <span class="cite">DOC 2 item 24, p.67</span></li>
+      <li>☐ Concluir/entregar trabalhos já demandados <span class="cite">DOC 4 item 6.1.2, p.77</span></li>
+      <li>☐ Afastar a microrregião se for o único habilitado impossibilitado <span class="cite">item 24.1, p.68</span></li>
+    </ul>
+
+    <h3>⑥ Retorno de afastamento</h3>
+    <ul>
+      <li>☐ Confirmar retorno à fila de distribuição <span class="cite">DOC 4 item 6, p.77</span></li>
+      <li>☐ Readquirir preferência do acompanhamento dos empreendimentos conduzidos <span class="cite">DOC 4 item 1.2.4.4, p.75</span></li>
+      <li>☐ Conferir se nenhum afastamento virou pontuação por ANS <span class="cite">DOC 4 item 6.3, p.77</span></li>
+    </ul>
+
+    <h3>⑦ Encerramento definitivo do contrato</h3>
+    <ul>
+      <li>☐ Avaliar via: amigável (aviso de 90 dias) ou administrativa <span class="cite">Cl. 2ª §2, p.44</span></li>
+      <li>☐ Concluir trabalhos pendentes / fiel depositária da documentação <span class="cite">DOC 2 item 10, p.66</span></li>
+      <li>☐ Termo de Distrato (Anexo XII) <span class="cite">5.21, p.9 · Anexo XII, p.91</span></li>
+      <li>☐ Manter sigilo mesmo após o encerramento <span class="cite">Cl. 19ª, p.51</span></li>
+    </ul>
+
+    <div class="nav-foot"><button class="btn" data-action="prev">← Oportunidades</button><button class="btn primary" data-action="next">Próximo → Manual da Mentoria</button></div>
+  </section>
+
+  <!-- ===================== BLOCO 12 ===================== -->
+  <section class="slide">
+    <div class="seclabel">Bloco 12 · Manual da Mentoria</div>
+    <h2>O método <em>Do Zero ao Credenciamento</em></h2>
+    <p class="lead">Síntese para conduzir o treinamento. A ordem de ensino que faz a aluna sair sabendo operar, não só sabendo que o edital existe.</p>
+
+    <h3>Como ensinar, sequência de 6 passos</h3>
+    <ol>
+      <li><strong>Mentalidade certa:</strong> credenciamento não é licitação. Não há vencedor; há fila. <span class="cite">item 3.1, p.4</span></li>
+      <li><strong>Elegibilidade:</strong> checar impedimentos (3.2) antes de qualquer documento, evita trabalho perdido. <span class="cite">p.4-6</span></li>
+      <li><strong>Montar a habilitação:</strong> jurídica + econômica + técnica, escolhendo SICAF ou Banco. <span class="cite">item 6, p.9</span></li>
+      <li><strong>Escolher pacotes e microrregiões:</strong> casar pré-requisitos com onde se quer faturar. <span class="cite">6.4 / DOC 1, p.13 e 64</span></li>
+      <li><strong>Operar a fila:</strong> prazos, recusa, ANS, onde se ganha e se perde dinheiro. <span class="cite">DOC 4 e 5, p.74-83</span></li>
+      <li><strong>Escalar com segurança:</strong> redundância de RTs, padronização, afastamento formal. <span class="cite">DOC 2 / DOC 4</span></li>
+    </ol>
+
+    <h3>Tabela de fundamentos, item × página × tema</h3>
+    <table class="tbl">
+      <tr><th>Tema</th><th>Item do edital</th><th>Página</th></tr>
+      <tr><td>Objeto do credenciamento</td><td>item 2.1 / Anexo I 1.1</td><td>4 / 24</td></tr>
+      <tr><td>Impedimentos de participação</td><td>item 3.2 (a–s)</td><td>4-6</td></tr>
+      <tr><td>Vedação de subcontratação</td><td>item 3.6 / Cl. 1ª §2</td><td>6 / 43</td></tr>
+      <tr><td>Vigência do edital / janela de requerimento</td><td>item 1.6 / 1.6.1</td><td>3</td></tr>
+      <tr><td>Condições de habilitação</td><td>item 6.1–6.7</td><td>9-16</td></tr>
+      <tr><td>Qualificação técnica exclusiva CREA/CAU</td><td>item 6.3.9</td><td>10-11</td></tr>
+      <tr><td>Dispensa para credenciados do 2019</td><td>item 6.3.10.8</td><td>11-12</td></tr>
+      <tr><td>Pacotes e pré-requisitos</td><td>item 6.4 / 6.5</td><td>13-15</td></tr>
+      <tr><td>Prazo de análise (100 dias úteis)</td><td>item 5.11</td><td>8</td></tr>
+      <tr><td>Alteração de serviços/polos (3 meses)</td><td>item 5.13</td><td>8</td></tr>
+      <tr><td>Sanções administrativas</td><td>item 9 / Cl. 24ª-27ª</td><td>20-22 / 52-53</td></tr>
+      <tr><td>Vigência do contrato</td><td>Cláusula Segunda</td><td>44</td></tr>
+      <tr><td>Hipóteses de rescisão</td><td>Cl. 2ª §2 / §3</td><td>44-45</td></tr>
+      <tr><td>Região de atuação / microrregiões A,B,C</td><td>DOC 1</td><td>64</td></tr>
+      <tr><td>Obrigações da contratada / afastamento</td><td>DOC 2 (esp. item 24)</td><td>65-68</td></tr>
+      <tr><td>Remuneração e prazos</td><td>DOC 3</td><td>69-73</td></tr>
+      <tr><td>Distribuição, fila e recusa</td><td>DOC 4</td><td>74-78</td></tr>
+      <tr><td>ANS, pagamento e exclusão</td><td>DOC 5</td><td>79-83</td></tr>
+      <tr><td>Microrregiões e municípios</td><td>Anexo XIII</td><td>93+</td></tr>
+    </table>
+
+    <div class="box interp"><div class="bt">Aviso de uso na mentoria</div><p>Tudo que está marcado como <strong>Interpretação</strong> ao longo do manual é leitura técnica das regras combinadas, útil para decisão, mas não é determinação expressa do edital. Ao orientar alunas, separe sempre "o que o edital diz" de "como eu leio o que o edital permite". Esse rigor é o que protege você e a aluna.</p></div>
+
+    <div class="box tip"><div class="bt">Fechamento</div><p>Este edital (BB CESUP-SP 2024/00940) é o seu <strong>modelo de referência</strong>. A arquitetura, habilitação por pacote, microrregiões A/B/C, fila por tempo sem OS, ANS por pontuação, se repete nos editais BB. Quem domina este, lê o próximo em uma tarde.</p></div>
+
+    <div class="nav-foot"><button class="btn" data-action="prev">← Checklists</button><button class="btn" data-action="next" disabled>Fim do manual</button></div>
+  </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const navItems = document.querySelectorAll('.nav-item');
+  const total = slides.length;
+  const content = document.getElementById('content');
+  const sideFoot = document.getElementById('sideFoot');
+
+  function goTo(index){
+    if(index < 0 || index >= total) return;
+    slides[current].classList.remove('active');
+    navItems[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    navItems[current].classList.add('active');
+    updateProgress();
+    if(content) content.scrollTop = 0;
+    navItems[current].scrollIntoView({block:'nearest'});
+  }
+  function updateProgress(){
+    const pct = Math.round(((current+1)/total)*100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+    if(sideFoot) sideFoot.textContent = 'Bloco ' + (current+1) + ' de ' + total + ' · Base: Edital 2024/00940(7421), BB / CESUP-SP';
+  }
+  navItems.forEach((item,i)=>item.addEventListener('click',()=>goTo(i)));
+  document.querySelectorAll('[data-action="next"]').forEach(b=>b.addEventListener('click',()=>goTo(current+1)));
+  document.querySelectorAll('[data-action="prev"]').forEach(b=>b.addEventListener('click',()=>goTo(current-1)));
+  document.addEventListener('keydown',(e)=>{
+    const tag = (e.target.tagName||'').toLowerCase();
+    if(tag === 'input' || tag === 'textarea') return;
+    if(e.key === 'ArrowRight'){ e.preventDefault(); goTo(current+1); }
+    if(e.key === 'ArrowLeft'){ e.preventDefault(); goTo(current-1); }
+  });
+
+  // Busca nas Q&A
+  const search = document.getElementById('qaSearch');
+  const qaList = document.getElementById('qaList');
+  const qaCount = document.getElementById('qaCount');
+  const allQA = qaList ? Array.from(qaList.querySelectorAll('.qa')) : [];
+  const groups = qaList ? Array.from(qaList.querySelectorAll('.qa-group')) : [];
+  if(qaCount) qaCount.textContent = allQA.length + ' perguntas';
+  if(search){
+    search.addEventListener('input',()=>{
+      const q = search.value.toLowerCase().trim();
+      let shown = 0;
+      allQA.forEach(d=>{
+        const t = d.textContent.toLowerCase();
+        const hit = q === '' || t.includes(q);
+        d.style.display = hit ? '' : 'none';
+        if(hit) shown++;
+        if(q !== '' && hit) d.open = true; else if(q === '') d.open = false;
+      });
+      groups.forEach(g=>{
+        let n = g.nextElementSibling, any = false;
+        while(n && !n.classList.contains('qa-group')){
+          if(n.classList.contains('qa') && n.style.display !== 'none') any = true;
+          n = n.nextElementSibling;
+        }
+        g.style.display = any ? '' : 'none';
+      });
+      qaCount.textContent = (q==='' ? allQA.length : shown) + (shown===1?' pergunta':' perguntas');
+    });
+  }
+  updateProgress();
+})();
+</script>
+<script>window.addEventListener('beforeprint',function(){document.querySelectorAll('details.qa').forEach(function(d){d.open=true});document.querySelectorAll('.slide').forEach(function(s){s.classList.add('active')})});</script></body>
+</html>

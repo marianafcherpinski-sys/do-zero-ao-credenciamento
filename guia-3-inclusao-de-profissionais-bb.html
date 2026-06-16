@@ -1,0 +1,187 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Como incluir novos profissionais, Credenciamento BB 2024/00940 | Do Zero ao Credenciamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF8F5;--panel:#FFFFFF;--ink:#262321;--ink-soft:#6A625C;
+  --accent:#C8202C;--accent-deep:#9E1822;--graf:#2B2B2B;
+  --line:#E4DED5;--soft:#F2EEE8;--rule:#CFC8BD;
+  --serif:'Fraunces',Georgia,serif;--sans:'Figtree',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6}
+.app{display:grid;grid-template-columns:340px 1fr;height:100vh;overflow:hidden}
+.sidebar{background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;height:100vh;overflow-y:auto}
+.brand{display:flex;gap:12px;align-items:center;padding:22px 22px 16px}
+.logo{width:42px;height:42px;border-radius:9px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-weight:600;font-size:22px;flex:0 0 auto}
+.brand h1{font-family:var(--serif);font-size:16px;line-height:1.2;font-weight:600}
+.brand h1 em{color:var(--accent);font-style:italic}
+.brand .sub{font-size:11.5px;color:var(--ink-soft);margin-top:3px}
+.progress-wrap{padding:8px 22px 16px;border-bottom:1px solid var(--line)}
+.progress-top{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:7px}
+.progress-bar{height:3px;background:var(--soft);border-radius:0;overflow:hidden}
+.progress-fill{height:100%;width:8%;background:var(--accent);transition:width .3s ease}
+.roteiro-label{font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:2.5px;font-weight:600;padding:16px 22px 8px}
+.nav-list{list-style:none;padding:0 12px 16px}
+.nav-item{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:11px 12px;border-radius:0;cursor:pointer;border-left:3px solid transparent;transition:background .15s}
+.nav-item:hover{background:var(--soft)}
+.nav-item.active{background:var(--soft);border-left-color:var(--accent)}
+.nav-num{font-family:var(--serif);font-weight:600;color:var(--accent);font-size:15px}
+.nav-title{font-size:13px;font-weight:500;line-height:1.25}
+.nav-time{font-size:11px;color:var(--ink-soft)}
+.side-foot{margin-top:auto;padding:16px 22px;border-top:1px solid var(--line);font-size:11px;color:var(--ink-soft)}
+.content{height:100vh;overflow-y:auto;scroll-behavior:smooth}
+.slide{display:none;min-height:100vh;flex-direction:column;padding:clamp(32px,4.5vw,72px) clamp(28px,5vw,90px)}
+.slide.active{display:flex}
+.seclabel{font-size:clamp(12px,1.1vw,14px);text-transform:uppercase;letter-spacing:2.5px;font-weight:600;color:var(--accent);margin-bottom:14px}
+.slide h2{font-family:var(--serif);font-weight:600;font-size:clamp(32px,4.4vw,54px);line-height:1.04;margin-bottom:8px}
+.slide h2 em{font-style:italic;color:var(--accent)}
+.lead{font-size:clamp(16px,1.4vw,20px);color:var(--ink-soft);max-width:62ch;margin-bottom:26px}
+.slide h3{font-family:var(--serif);font-weight:600;font-size:clamp(19px,2vw,26px);margin:30px 0 10px;color:var(--graf)}
+.slide p{margin-bottom:13px;max-width:74ch}
+.slide ul,.slide ol{margin:6px 0 14px 22px;max-width:74ch}
+.slide li{margin-bottom:9px}
+.cite{font-size:12.5px;color:var(--accent-deep);font-weight:600;background:var(--soft);padding:1px 7px;border-radius:0}
+.anchor{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.6vw,32px);line-height:1.22;color:var(--graf);border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:8px 0 26px;max-width:62ch}
+.anchor em{font-style:italic;color:var(--accent)}
+.steps{counter-reset:step;list-style:none;margin:8px 0 16px}
+.steps li{position:relative;padding:6px 0 14px 50px;margin-bottom:6px;max-width:82ch;border-bottom:1px solid var(--line)}
+.steps li:last-child{border-bottom:0}
+.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:6px;top:4px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--serif);font-weight:600;display:flex;align-items:center;justify-content:center;font-size:15px}
+.tbl{width:100%;border-collapse:collapse;margin:12px 0 22px;font-size:13.5px;border-top:2px solid var(--graf)}
+.tbl th,.tbl td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{background:var(--graf);color:#fff;font-size:11.5px;text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+.tbl tr:nth-child(even) td{background:var(--soft)}
+.box{background:transparent;border:0;border-left:3px solid var(--rule);border-radius:0;padding:3px 0 3px 18px;margin:18px 0;max-width:82ch}
+.box .bt{font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;color:#5A544E}
+.box.risk{border-left-color:var(--accent)}.box.risk .bt{color:var(--accent-deep)}
+.box.edital{border-left-color:var(--graf)}.box.edital .bt{color:var(--graf)}
+.box.edital .q{font-style:italic;color:#4A4540;font-size:13.5px;line-height:1.55}
+.box.tip,.box.warn,.box.interp{border-left-color:var(--rule)}
+.box p:last-child{margin-bottom:0}
+.check{list-style:none;margin:8px 0 16px}
+.check li{padding-left:6px;margin-bottom:10px;max-width:82ch}
+.nav-foot{display:flex;justify-content:space-between;gap:14px;margin-top:38px;padding-top:18px;border-top:1px solid var(--line)}
+.btn{font-family:var(--sans);font-size:14px;font-weight:600;padding:11px 20px;border-radius:0;border:1px solid var(--rule);background:transparent;color:var(--ink);cursor:pointer;transition:.15s}
+.btn:hover{background:var(--soft)}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.primary:hover{background:var(--accent-deep)}
+.btn:disabled{opacity:.35;cursor:default}
+.small{font-size:12.5px;color:var(--ink-soft)}
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0;border-top:2px solid var(--graf);margin:10px 0 18px}
+.duo div{padding:14px 16px;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+.duo .k{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent-deep);font-weight:700;margin-bottom:5px}
+.duo .v{font-family:var(--serif);font-size:23px;font-weight:600}
+@media(max-width:880px){.app{grid-template-columns:1fr;height:auto}.sidebar{height:auto;position:sticky;top:0;z-index:5;max-height:42vh}.content{height:auto}.slide{min-height:auto}}
+@media print{@page{margin:13mm}html,body{background:#fff !important}.app{display:block !important;height:auto !important;overflow:visible !important}.sidebar{display:none !important}.content{height:auto !important;overflow:visible !important}.slide{display:flex !important;min-height:auto !important;page-break-after:always;padding:0 0 16px !important}.slide:last-child{page-break-after:auto}.nav-foot,.btn{display:none !important}.box,.tbl,.steps li,.duo{break-inside:avoid}a{color:inherit !important;text-decoration:none}}
+</style></head><body>
+<div class="app">
+<aside class="sidebar">
+<div class="brand"><div class="logo">C</div><div><h1>Guia · <em>Inclusão</em> de Profissionais</h1><div class="sub">Como incluir novos profissionais, Credenciamento BB 2024/00940</div></div></div>
+<div class="progress-wrap"><div class="progress-top"><span>Progresso</span><span id="progressPct">8%</span></div><div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div></div>
+<div class="roteiro-label">Roteiro</div>
+<ul class="nav-list" id="navList"><li class="nav-item active" data-slide="0"><span class="nav-num">01</span><span class="nav-title">Por que incluir profissionais</span><span class="nav-time">4min</span></li><li class="nav-item" data-slide="1"><span class="nav-num">02</span><span class="nav-title">Passo a passo: o que enviar, pra quem</span><span class="nav-time">6min</span></li><li class="nav-item" data-slide="2"><span class="nav-num">03</span><span class="nav-title">Documentação por profissional</span><span class="nav-time">5min</span></li><li class="nav-item" data-slide="3"><span class="nav-num">04</span><span class="nav-title">Vínculos que valem (e os que não)</span><span class="nav-time">5min</span></li><li class="nav-item" data-slide="4"><span class="nav-num">05</span><span class="nav-title">Onde o profissional vai atuar</span><span class="nav-time">4min</span></li><li class="nav-item" data-slide="5"><span class="nav-num">06</span><span class="nav-title">Checklist e erros a evitar</span><span class="nav-time">3min</span></li></ul>
+<div class="side-foot" id="sideFoot">Mentoria Do Zero ao Credenciamento</div>
+</aside>
+<main class="content" id="content"><section class="slide active"><div class="seclabel">Bloco 01, A estratégia</div><h2>Como <em>incluir</em> novos profissionais no contrato</h2>
+<p class="lead">O credenciamento é da empresa, mas a habilitação técnica é por profissional. Incluir engenheiros e arquitetos amplia a sua cobertura e reduz a dependência de uma só pessoa.</p>
+<div class="anchor">A fila é da <em>empresa</em>, não do profissional. Você só entra em uma fila nova quando cobre uma microrregião nova, porque a prioridade é por empresa em cada microrregião.</div>
+<div class="box edital"><div class="bt">O que diz o edital: a fila é por empresa</div><p class="q">“Para os serviços será observada a seguinte ordem de classificação: a) Empresa com prioridade é aquela com mais tempo sem receber ordem de serviço na microrregião; b) Sorteio, no caso de empate da alínea anterior. (DOCUMENTO Nº 4, item 1.2.1, p.74)”</p></div>
+<p>Quando a demanda cai, ela vem no nome da empresa. Qualquer profissional habilitado naquela atividade e microrregião pode executá-la e assiná-la. <span class="cite">DOC 2 item 8, p.66</span></p>
+<h3>O que incluir um profissional realmente te dá</h3>
+<ul>
+<li>Cobertura: cada novo RT pode declarar microrregiões que você ainda não atende (cada técnico escolhe de 1 a 6, em até 2 UFs). Mais RTs, mais microrregiões na sua preferência, ou seja, mais filas em que você entra. <span class="cite">DOC 1 item 4, p.64</span></li>
+<li>Atividades: o novo profissional pode habilitar pacotes e atividades que a empresa ainda não tinha. <span class="cite">item 6.4, p.13</span></li>
+<li>Capacidade: como a demanda chega no nome da empresa e qualquer habilitado pode fazer, ter mais de um técnico na mesma praça não cria fila extra, mas aumenta quanto você consegue atender ao mesmo tempo e protege contra o afastamento obrigatório do profissional único. <span class="cite">DOC 2 item 8, p.66 · DOC 2 item 24.1, p.68</span></li>
+</ul>
+<p>Pode incluir engenheiros e arquitetos (registrados no CAU). O objeto admite os dois conselhos. <span class="cite">item 2.1, p.4 · 6.5, p.13</span></p><div class="nav-foot"><button class="btn" data-action="prev" disabled>Anterior</button><button class="btn primary" data-action="next">Pr&oacute;ximo</button></div></section><section class="slide"><div class="seclabel">Bloco 02, O caminho</div><h2>O <em>passo a passo</em> da inclusão</h2>
+<p class="lead">Incluir um profissional é um pedido de alteração do credenciamento. Aqui está o que você monta, por qual canal e em que prazo.</p>
+<ol class="steps">
+<li>Confirme o prazo: o pedido só pode ser feito após 3 meses da assinatura do contrato ou do aditivo. <span class="cite">item 5.13, p.8</span></li>
+<li>Monte o Requerimento (Anexo III) atualizado, incluindo o novo profissional, as atividades e as microrregiões pretendidas, em .pdf e .xls. <span class="cite">6.3.10.1, p.11</span></li>
+<li>Junte a documentação técnica de cada novo profissional (próximo bloco detalha). <span class="cite">6.3.10.4 a 6.3.10.7, p.11</span></li>
+<li>Envie o pedido pelo Portal do Fornecedor (PFN), em fornecedor.bb.com.br. É o canal eletrônico do contrato. O e-mail do CESUP (cesupcontrat.creden@bb.com.br) vale para o requerimento inicial de credenciamento, não para alterações no contrato. <span class="cite">item 8.4, p.19</span></li>
+<li>Comunique a alteração de quadro técnico em até 10 dias da ocorrência. <span class="cite">DOC 2 item 21, p.67</span></li>
+</ol>
+<h3>Resumo do envio</h3>
+<table class="tbl"><tr><th>O que você envia</th><th>Conteúdo</th><th>Para quem / canal</th><th>Prazo</th></tr>
+<tr><td>Pedido de alteração</td><td>Requerimento (Anexo III) atualizado, .pdf e .xls</td><td>Portal do Fornecedor (PFN), fornecedor.bb.com.br</td><td>Após 3 meses da assinatura; atendido em até 100 dias úteis</td></tr>
+<tr><td>Documentação do profissional</td><td>Certidão de vínculo, registro/quitação, ID+CPF, comprovação de experiência</td><td>Junto ao pedido, pelo Portal</td><td>Junto</td></tr>
+<tr><td>Comunicação de quadro</td><td>Aviso da mudança no quadro técnico</td><td>Ao Banco, pelo Portal do Fornecedor</td><td>Em até 10 dias da ocorrência</td></tr></table>
+<div class="box risk"><div class="bt">Importante (canal): o que é regra e o que confirmar</div>
+<p>O edital determina a forma ("por escrito ao CONTRATANTE, com aviso prévio"), mas não nomeia um e-mail único de alteração. Na prática, o canal de comunicação do contrato é o Portal do Fornecedor (fornecedor.bb.com.br) e o gestor/fiscal do contrato. O e-mail cesupcontrat.creden@bb.com.br é o canal do CESUP para o credenciamento. Confirme com o gestor do seu contrato qual canal usar antes de protocolar.</p></div><div class="box edital"><div class="bt">O que diz o edital: prazo para alterações</div><p class="q">“O prazo mínimo entre pedidos de alterações de serviços e polos de atuação da empresa credenciada será de 3 (três) meses após a assinatura do contrato ou do aditivo pelo CONTRATANTE, independentemente da quantidade de responsáveis técnicos. Tais pedidos serão atendidos em até 100 (cem) dias úteis. (item 5.13, p.8)”</p></div><div class="box edital"><div class="bt">O que diz o edital: canal eletrônico do contrato (Portal do Fornecedor)</div><p class="q">“A critério do BANCO, a formalização do instrumento contratual poderá ocorrer de forma eletrônica (...) mediante acesso à área restrita do Portal do Fornecedor-PFN (https://fornecedor.bb.com.br). (item 8.3 e 8.4, p.19)”</p></div><div class="nav-foot"><button class="btn" data-action="prev">Anterior</button><button class="btn primary" data-action="next">Pr&oacute;ximo</button></div></section><section class="slide"><div class="seclabel">Bloco 03, O que juntar</div><h2>A <em>documentação</em> de cada profissional</h2>
+<p class="lead">Para cada técnico incluído, monte o pacote de qualificação técnica completo, como se fosse uma nova habilitação só dele.</p>
+<ol class="steps">
+<li>Comprovação de vínculo regular entre a PJ e o profissional, por certidão do CREA/CAU. <span class="cite">6.3.10.4, p.11</span></li>
+<li>Certidão de registro e quitação do profissional (PF) no conselho. <span class="cite">6.3.10.5, p.11</span></li>
+<li>Identidade e CPF do profissional. <span class="cite">6.3.10.6, p.11</span></li>
+<li>Comprovação de experiência conforme o pré-requisito do pacote pretendido. <span class="cite">6.3.10.7 e 6.5, p.11 e 13</span></li>
+<li>Atualizar o registro da PJ no conselho para constar o novo responsável técnico. <span class="cite">6.3.10.3, p.11</span></li>
+</ol>
+<div class="box edital"><div class="bt">O que diz o edital: comprovação de vínculo</div><p class="q">“Certidão válida da Pessoa Jurídica em que haja comprovação de vínculo profissional regular com os responsáveis técnicos que realizarão os serviços objeto desse credenciamento, nos respectivos conselhos. (item 6.3.10.4, p.11)”</p></div><div class="box edital"><div class="bt">O que diz o edital: inclusão enseja qualificação</div><p class="q">“A inclusão de novos profissionais nas empresas também ensejará tal qualificação para cada profissional. (item 6.3.10.8.3, p.12)”</p></div>
+<div class="box interp"><div class="bt">Leitura técnica: dispensa do edital de 2019</div><p>Profissional credenciado no 2019/01725 só mantém a dispensa enquanto o vínculo é mantido. Vindo de outra empresa, exige documentação técnica completa. <span class="cite">6.3.10.8.2, p.12</span></p></div><div class="nav-foot"><button class="btn" data-action="prev">Anterior</button><button class="btn primary" data-action="next">Pr&oacute;ximo</button></div></section><section class="slide"><div class="seclabel">Bloco 04, Vínculo</div><h2>Quais <em>vínculos</em> o Banco aceita</h2>
+<p class="lead">Aqui mora o erro mais comum: tentar incluir alguém como subcontratado. O edital fecha essa porta.</p>
+<table class="tbl"><tr><th>Forma de vínculo</th><th>Vale?</th><th>Base</th></tr>
+<tr><td>Sócio que é RT</td><td>Sim, se não for pessoa vedada (3.2)</td><td><span class="cite">3.2, p.5-6</span></td></tr>
+<tr><td>Empregado (CLT) habilitado</td><td>Sim, com vínculo regular no conselho</td><td><span class="cite">Cl. 6ª, p.47</span></td></tr>
+<tr><td>Profissional registrado no CREA/CAU</td><td>Sim</td><td><span class="cite">6.3.10.4, p.11</span></td></tr>
+<tr><td>Prestador ou PJ por nota fiscal</td><td>Não</td><td><span class="cite">3.6, p.6</span></td></tr></table>
+<div class="box edital"><div class="bt">O que diz o edital: vedação de subcontratação</div><p class="q">“É vedada a subcontratação total ou parcial dos serviços (...). (item 3.6, p.6)”</p></div><div class="box edital"><div class="bt">O que diz o edital: quem pode assinar o trabalho</div><p class="q">“Entregar ao CONTRATANTE o(s) trabalho(s) técnico(s) assinado(s), obrigatoriamente, pelo(s) profissional(is) vinculado(s) à empresa, devidamente habilitado(s) naquela(s) atividade(s) e microrregião(ões) e que efetivamente tenham realizado o serviço, não sendo permitidas procurações; (DOCUMENTO Nº 2, item 8, p.66)”</p></div>
+<div class="box risk"><div class="bt">Vedação central</div><p>O trabalho é assinado por profissional vinculado, habilitado e que realizou o serviço, sem procurações. Terceiro só entra como vínculo regular reconhecido pelo conselho, nunca como subcontratado.</p></div><div class="nav-foot"><button class="btn" data-action="prev">Anterior</button><button class="btn primary" data-action="next">Pr&oacute;ximo</button></div></section><section class="slide"><div class="seclabel">Bloco 05, Habilitação</div><h2>Onde o novo profissional poderá <em>atuar</em></h2>
+<p class="lead">Incluir não basta: o profissional só executa o que está habilitado. A habilitação é granular.</p>
+<div class="duo">
+<div><div class="k">Por pacote</div><div class="v" style="font-size:17px">Pacotes 1 a 6</div><div class="small">indivisíveis <span class="cite">6.4, p.13</span></div></div>
+<div><div class="k">Por atividade</div><div class="v" style="font-size:17px">Por código</div><div class="small">AVA-101, EVT-303... <span class="cite">6.3.10.10, p.12</span></div></div>
+<div><div class="k">Por microrregião</div><div class="v" style="font-size:17px">1 a 6 (A/B/C)</div><div class="small">máx. 2 UFs <span class="cite">DOC 1 it.4, p.64</span></div></div>
+</div>
+<div class="box risk"><div class="bt">Profissional não habilitado</div><p>Quem não está habilitado naquela atividade e microrregião está impedido de executar e assinar. <span class="cite">DOC 4 item 5.4, p.77</span></p></div>
+<div class="box edital"><div class="bt">O que diz o edital: reavaliação pelo Banco</div><p class="q">“Poderá o BANCO, a qualquer momento, reavaliar a capacitação técnica da empresa, sempre que houver qualquer alteração na composição societária (...). (item 5.18, p.9)”</p></div>
+<div class="box interp"><div class="bt">Leitura técnica</div><p>Se o currículo do mesmo profissional aparecer em duas empresas, vale para a primeira que entregou a documentação (data e hora). É desconsiderado nas demais. <span class="cite">6.3.10.9, p.12</span></p></div><div class="nav-foot"><button class="btn" data-action="prev">Anterior</button><button class="btn primary" data-action="next">Pr&oacute;ximo</button></div></section><section class="slide"><div class="seclabel">Bloco 06, Na prática</div><h2>Checklist da <em>inclusão</em></h2>
+<ul class="check">
+<li>☐ Aguardar 3 meses da assinatura <span class="cite">5.13, p.8</span></li>
+<li>☐ Requerimento (Anexo III) atualizado, .pdf e .xls <span class="cite">6.3.10.1, p.11</span></li>
+<li>☐ Certidão de vínculo regular do profissional <span class="cite">6.3.10.4, p.11</span></li>
+<li>☐ Registro e quitação do profissional (PF) <span class="cite">6.3.10.5, p.11</span></li>
+<li>☐ Identidade e CPF <span class="cite">6.3.10.6, p.11</span></li>
+<li>☐ Comprovação de experiência (pré-requisito do pacote) <span class="cite">6.3.10.7, p.11</span></li>
+<li>☐ Enviar pelo Portal do Fornecedor (PFN) <span class="cite">item 8.4, p.19</span></li>
+<li>☐ Comunicar a alteração de quadro em 10 dias <span class="cite">DOC 2 item 21, p.67</span></li>
+</ul>
+<div class="box risk"><div class="bt">Erros que travam a inclusão</div>
+<p>1. Entrar com terceiro como subcontratado ou por nota fiscal. <span class="cite">3.6, p.6</span></p>
+<p>2. Pedir a alteração antes dos 3 meses. <span class="cite">5.13, p.8</span></p>
+<p>3. Esquecer a comprovação de experiência por profissional. <span class="cite">6.3.10.7, p.11</span></p></div><div class="nav-foot"><button class="btn" data-action="prev">Anterior</button><button class="btn" data-action="next" disabled>Fim</button></div></section></main>
+</div>
+<script>
+(function(){
+  let current=0;
+  const slides=document.querySelectorAll('.slide');
+  const navItems=document.querySelectorAll('.nav-item');
+  const total=slides.length;
+  const content=document.getElementById('content');
+  const sideFoot=document.getElementById('sideFoot');
+  function goTo(i){
+    if(i<0||i>=total)return;
+    slides[current].classList.remove('active');navItems[current].classList.remove('active');
+    current=i;
+    slides[current].classList.add('active');navItems[current].classList.add('active');
+    upd();if(content)content.scrollTop=0;navItems[current].scrollIntoView({block:'nearest'});
+  }
+  function upd(){
+    const p=Math.round(((current+1)/total)*100);
+    document.getElementById('progressFill').style.width=p+'%';
+    document.getElementById('progressPct').textContent=p+'%';
+    if(sideFoot)sideFoot.textContent='Bloco '+(current+1)+' de '+total;
+  }
+  navItems.forEach((it,i)=>it.addEventListener('click',()=>goTo(i)));
+  document.querySelectorAll('[data-action=next]').forEach(b=>b.addEventListener('click',()=>goTo(current+1)));
+  document.querySelectorAll('[data-action=prev]').forEach(b=>b.addEventListener('click',()=>goTo(current-1)));
+  document.addEventListener('keydown',e=>{const t=(e.target.tagName||'').toLowerCase();if(t=='input'||t=='textarea')return;if(e.key=='ArrowRight'){e.preventDefault();goTo(current+1)}if(e.key=='ArrowLeft'){e.preventDefault();goTo(current-1)}});
+  window.addEventListener('beforeprint',function(){document.querySelectorAll('.slide').forEach(function(s){s.classList.add('active')})});
+  upd();
+})();
+</script></body></html>
