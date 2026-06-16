@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comece aqui | Do Zero ao Credenciamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF8F5;--panel:#fff;--ink:#262321;--ink-soft:#6A625C;
+  --red:#C8202C;--red-deep:#9E1822;--graf:#2B2B2B;
+  --line:#E4DED5;--soft:#F2EEE8;--rule:#CFC8BD;
+  --display:'Fraunces',Georgia,serif;--body:'Figtree',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:880px;margin:0 auto;padding:clamp(22px,4vw,44px)}
+a{color:var(--red-deep)}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:30px}
+.marca{display:flex;gap:12px;align-items:center}
+.logo-slot{width:48px;height:48px;border-radius:11px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-style:italic;font-weight:600;font-size:22px}
+.marca .nome{font-family:var(--display);font-weight:600;font-size:16px}
+.marca .nome span{color:var(--red)}
+.marca .papel{font-size:12px;color:var(--ink-soft)}
+.back{font-size:13px;font-weight:600;text-decoration:none;color:var(--red-deep);background:var(--soft);padding:8px 14px;border-radius:8px}
+.seclabel{font-size:12px;text-transform:uppercase;letter-spacing:2.5px;font-weight:600;color:var(--red);margin:38px 0 10px}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(32px,5vw,52px);line-height:1.04;margin-bottom:14px}
+h1 em{font-style:italic;color:var(--red)}
+.lead{font-size:clamp(16px,1.5vw,19px);color:var(--ink-soft);max-width:62ch;margin-bottom:8px}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(22px,2.6vw,30px);margin:6px 0 12px}
+p{margin-bottom:12px;max-width:74ch}
+.muted{font-size:13px;color:var(--ink-soft)}
+
+/* trilha */
+.trilha{counter-reset:t;list-style:none;margin:6px 0 10px}
+.trilha li{position:relative;padding:14px 16px 14px 56px;border:1px solid var(--line);border-left:3px solid var(--red);background:var(--panel);margin-bottom:10px;border-radius:0}
+.trilha li::before{counter-increment:t;content:counter(t);position:absolute;left:14px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-family:var(--display);font-weight:600;display:flex;align-items:center;justify-content:center;font-size:14px}
+.trilha b{font-family:var(--display);font-size:16px}
+.trilha a{font-weight:600}
+
+/* fluxo (vertical) */
+.flow{max-width:560px;margin:6px 0 8px}
+.node{border:1px solid var(--line);border-left:3px solid var(--graf);background:var(--panel);padding:13px 16px;border-radius:0}
+.node .n{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--red-deep);font-weight:700;margin-bottom:3px}
+.node .t{font-size:15px}
+.node small{color:var(--ink-soft)}
+.arrow{height:22px;width:2px;background:var(--rule);margin:0 0 0 26px}
+.node.warn{border-left-color:var(--red);background:#FCF3F2}
+.node.warn .n{color:var(--red-deep)}
+.branch{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:6px 0}
+@media(max-width:600px){.branch{grid-template-columns:1fr}}
+
+/* timeline */
+.tl{list-style:none;border-left:2px solid var(--rule);margin:8px 0 8px 8px;padding-left:0}
+.tl li{position:relative;padding:0 0 18px 26px}
+.tl li::before{content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
+.tl .k{font-family:var(--display);font-weight:600;font-size:16px}
+.tl .v{font-size:14px;color:var(--ink)}
+.tl .c{font-size:12px;color:var(--ink-soft)}
+
+/* glossário */
+.gloss{border-top:2px solid var(--graf);margin-top:8px}
+.gloss .row{display:grid;grid-template-columns:200px 1fr;gap:16px;padding:12px 4px;border-bottom:1px solid var(--line)}
+.gloss .term{font-family:var(--display);font-weight:600;font-size:15px;color:var(--graf)}
+.gloss .def{font-size:14px}
+.gloss .def .cite{font-size:11.5px;color:var(--red-deep);background:var(--soft);padding:1px 6px;border-radius:0}
+@media(max-width:600px){.gloss .row{grid-template-columns:1fr;gap:2px}}
+
+.foot{margin-top:46px;border-top:2px solid var(--graf);padding-top:20px;font-size:13px;color:var(--ink-soft)}
+@media print{@page{margin:13mm}body{background:#fff}.back{display:none}.node,.tl li,.trilha li,.gloss .row{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="marca">
+      <div class="logo-slot">Z</div>
+      <div><div class="nome">Do Zero ao <span>Credenciamento</span></div><div class="papel">Comece por aqui</div></div>
+    </div>
+    <a class="back" href="index.html">← Voltar para o início</a>
+  </div>
+
+  <div class="seclabel">Comece aqui</div>
+  <h1>O <em>mapa</em> do credenciamento</h1>
+  <p class="lead">Antes de mergulhar nos guias, entenda o caminho inteiro: como o processo funciona, como a fila distribui serviço, quais prazos não se pode furar, e o que cada sigla significa.</p>
+
+  <div class="seclabel">Sua trilha</div>
+  <h2>Em que ordem estudar</h2>
+  <ol class="trilha">
+    <li><b>Esta página.</b> O mapa geral: processo, fila, prazos e glossário. É a sua base.</li>
+    <li><b><a href="manual-credenciamento-bb-2024-00940.html">O Manual Completo</a>.</b> As 12 etapas e as 118 dúvidas. Leia do começo se está do zero; depois use como consulta.</li>
+    <li><b>Os 3 guias de situação.</b> Quando precisar resolver algo específico: <a href="guia-1-cancelamento-contrato-bb.html">cancelar o contrato</a>, <a href="guia-2-afastamento-temporario-bb.html">se ausentar por um tempo</a> ou <a href="guia-3-inclusao-de-profissionais-bb.html">incluir profissionais</a>.</li>
+  </ol>
+  <p class="muted">Dica: cada regra nos materiais traz o item e a página do edital. Quando bater dúvida, vá direto na fonte.</p>
+
+  <div class="seclabel">Como funciona</div>
+  <h2>O caminho, do começo ao fim</h2>
+  <p class="muted">Credenciamento não é licitação: não tem vencedor único. Quem cumpre os requisitos entra, e depois disputa o serviço pela fila.</p>
+  <div class="flow">
+    <div class="node"><div class="n">Passo 1</div><div class="t">Requerimento de credenciamento <small>(Anexo III + documentação técnica, jurídica e financeira)</small></div></div>
+    <div class="arrow"></div>
+    <div class="node"><div class="n">Passo 2</div><div class="t">Análise do Banco <small>(prazo de até 100 dias úteis)</small></div></div>
+    <div class="arrow"></div>
+    <div class="branch">
+      <div class="node"><div class="n">Se deferido</div><div class="t">Assinatura do contrato pelo Portal do Fornecedor</div></div>
+      <div class="node warn"><div class="n">Se indeferido</div><div class="t">Aguardar 90 dias corridos para um novo pedido</div></div>
+    </div>
+    <div class="arrow"></div>
+    <div class="node"><div class="n">Passo 3</div><div class="t">Empresa entra na fila de distribuição <small>(por microrregião)</small></div></div>
+    <div class="arrow"></div>
+    <div class="node"><div class="n">Passo 4</div><div class="t">Recebe a Ordem de Serviço (OS) e abre a ART/RRT antes de executar</div></div>
+    <div class="arrow"></div>
+    <div class="node"><div class="n">Passo 5</div><div class="t">Executa, entrega e é avaliada no ANS <small>(prazo e qualidade)</small></div></div>
+  </div>
+
+  <div class="seclabel">A fila</div>
+  <h2>Como o serviço chega até você</h2>
+  <div class="flow">
+    <div class="node"><div class="n">1</div><div class="t">Surge uma demanda numa microrregião</div></div>
+    <div class="arrow"></div>
+    <div class="node"><div class="n">2</div><div class="t">O Banco chama a empresa que está há mais tempo sem receber OS naquela microrregião <small>(empate vai a sorteio)</small></div></div>
+    <div class="arrow"></div>
+    <div class="node"><div class="n">3</div><div class="t">A demanda vem no nome da empresa. Qualquer profissional habilitado naquela atividade e microrregião pode executar e assinar</div></div>
+    <div class="arrow"></div>
+    <div class="branch">
+      <div class="node"><div class="n">Se aceita</div><div class="t">Executa dentro do prazo (silêncio até 16h do dia útil seguinte já conta como aceite)</div></div>
+      <div class="node warn"><div class="n">Se recusa</div><div class="t">7 dias fora da microrregião, vai pro fim da fila e leva pontuação negativa</div></div>
+    </div>
+  </div>
+  <p class="muted">A fila é da empresa, não do profissional. Ter mais técnicos abre microrregiões e atividades novas, não posições extras na mesma praça.</p>
+
+  <div class="seclabel">Prazos</div>
+  <h2>O que você não pode furar</h2>
+  <ul class="tl">
+    <li><div class="k">Responder à convocação</div><div class="v">Até as 16h do dia útil seguinte ao envio da OS. Não responder conta como aceite.</div></li>
+    <li><div class="k">Executar o serviço</div><div class="v">Começa a contar no 1º dia útil após a OS. Cada atividade tem seu prazo no Documento nº 3.</div></li>
+    <li><div class="k">ART/RRT</div><div class="v">Aberta antes de executar; entregue até o mês seguinte. Sem ela, conta como inexecução.</div></li>
+    <li><div class="k">Corrigir um laudo devolvido</div><div class="v">2 dias úteis na maioria das atividades; 1 dia útil para RAE.</div></li>
+    <li><div class="k">Pedir afastamento temporário</div><div class="v">Com no mínimo 5 dias corridos de antecedência; período mínimo de 7 dias corridos.</div></li>
+    <li><div class="k">Incluir um profissional</div><div class="v">Só após 3 meses da assinatura; o Banco atende em até 100 dias úteis.</div></li>
+    <li><div class="k">Rescisão amigável</div><div class="v">Aviso prévio por escrito de no mínimo 90 dias.</div></li>
+  </ul>
+
+  <div class="seclabel">Glossário</div>
+  <h2>As siglas, em português</h2>
+  <div class="gloss">
+    <div class="row"><div class="term">Credenciamento</div><div class="def">Cadastro de empresas aptas. Diferente de licitação: não há vencedor único, todos que cumprem os requisitos entram e disputam serviço pela fila.</div></div>
+    <div class="row"><div class="term">RT (Responsável Técnico)</div><div class="def">O engenheiro ou arquiteto, com vínculo regular no conselho, que responde tecnicamente e assina os trabalhos. <span class="cite">item 6.3.10.4</span></div></div>
+    <div class="row"><div class="term">Microrregião (A, B, C)</div><div class="def">Recorte geográfico definido pelo Banco, indivisível. Cada RT escolhe de 1 a 6, em até 2 estados. A classificação A/B/C escalona quais posições você pode ocupar. <span class="cite">DOC 1 item 4</span></div></div>
+    <div class="row"><div class="term">Pacote (1 a 6)</div><div class="def">Conjunto indivisível de atividades. Você se qualifica para o pacote, não para uma atividade solta dentro dele. <span class="cite">item 6.4</span></div></div>
+    <div class="row"><div class="term">OS (Ordem de Serviço)</div><div class="def">O documento pelo qual o Banco te convoca para um serviço específico, com local e prazo. <span class="cite">DOC 6</span></div></div>
+    <div class="row"><div class="term">ART / RRT</div><div class="def">Anotação (CREA) ou Registro (CAU) de Responsabilidade Técnica. Abre-se antes de executar e formaliza quem responde pelo trabalho. <span class="cite">DOC 2 itens 4 e 34</span></div></div>
+    <div class="row"><div class="term">CAT</div><div class="def">Certidão de Acervo Técnico, emitida pelo CREA/CAU, que comprova que o profissional já executou determinada atividade. Usada para habilitar pacotes. <span class="cite">item 6.5</span></div></div>
+    <div class="row"><div class="term">ANS</div><div class="def">Acordo de Nível de Serviço. Mede prazo e qualidade e desconta do pagamento; acumula pontos negativos que podem excluir a empresa temporariamente. <span class="cite">DOC 5</span></div></div>
+    <div class="row"><div class="term">Exclusão temporária</div><div class="def">Período fora da fila por acúmulo de pontuação negativa no ANS (de 90 a 365 dias, conforme os pontos). <span class="cite">DOC 5, Tabelas 4 e 8</span></div></div>
+    <div class="row"><div class="term">PFN (Portal do Fornecedor)</div><div class="def">Canal eletrônico do contrato (fornecedor.bb.com.br), onde se assina o contrato e se tratam as alterações. <span class="cite">item 8.4</span></div></div>
+    <div class="row"><div class="term">Distrato</div><div class="def">O documento que formaliza o encerramento do contrato (minuta do Anexo XII). <span class="cite">item 5.21</span></div></div>
+    <div class="row"><div class="term">Afastamento temporário</div><div class="def">Suspensão temporária do recebimento de serviços, a pedido da empresa (férias, saúde, força maior), sem perder o credenciamento. <span class="cite">DOC 2 item 24</span></div></div>
+  </div>
+
+  <div class="foot">
+    Base: Edital de Credenciamento BB nº 2024/00940(7421). Material didático da mentoria. Os trechos marcados como interpretação são leitura técnica, não determinação expressa do edital.<br>
+    <a href="index.html">← Voltar para o início</a>
+  </div>
+
+</div>
+</body>
+</html>
